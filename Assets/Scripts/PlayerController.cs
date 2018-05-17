@@ -10,11 +10,14 @@ public class PlayerController : MonoBehaviour
     private Vector3 moveDirection = Vector3.zero;
     private Vector3 rotateDirection = Vector3.zero;
     [SerializeField] private float walkSpeed;
+    [SerializeField] private Camera cam;
+    [SerializeField] private float rayDistance;
 
     private void Start()
     {
         anim = GetComponent<Animator>();
         charController = GetComponent<CharacterController>();
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     private void Update()
@@ -22,6 +25,7 @@ public class PlayerController : MonoBehaviour
         Move();
         Rotate();
         Animation();
+        ServeCustomer();
     }
 
     private void Move()
@@ -50,5 +54,37 @@ public class PlayerController : MonoBehaviour
 
         anim.SetFloat("MoveX", Input.GetAxis("Horizontal"));
         anim.SetFloat("MoveZ", Input.GetAxis("Vertical"));
+    }
+
+    private void ServeCustomer()
+    {
+        if (Input.GetKeyDown(KeyCode.Mouse0))
+        {
+            Ray ray = new Ray(cam.transform.position, cam.transform.forward);
+            RaycastHit hit;
+
+            if (Physics.Raycast(ray, out hit, rayDistance))
+            {
+                if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Customer"))
+                {
+                    hit.collider.gameObject.GetComponent<CustomerController>().IsServed = true;
+                }
+            }
+        }
+
+        if (Input.GetKeyDown(KeyCode.Mouse1))
+        {
+            Ray ray = new Ray(cam.transform.position, cam.transform.forward);
+            RaycastHit hit;
+
+            if (Physics.Raycast(ray, out hit, rayDistance))
+            {
+                if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Customer"))
+                {
+                    hit.collider.gameObject.GetComponent<CustomerController>().IsServed = true;
+                    hit.collider.gameObject.GetComponent<CustomerController>().HasAllergen = true;
+                }
+            }
+        }
     }
 }
