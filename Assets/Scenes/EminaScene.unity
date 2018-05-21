@@ -190,7 +190,7 @@ Transform:
   m_LocalScale: {x: 3, y: 1, z: 3}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1048213601
 Prefab:
@@ -199,6 +199,11 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 114475428079576674, guid: 54c8e00be886ba14cb954692f960ae8c,
+        type: 2}
+      propertyPath: Restaurant.Meals.Array.size
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 4807339605487072, guid: 54c8e00be886ba14cb954692f960ae8c, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -229,7 +234,81 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4807339605487072, guid: 54c8e00be886ba14cb954692f960ae8c, type: 2}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114475428079576674, guid: 54c8e00be886ba14cb954692f960ae8c,
+        type: 2}
+      propertyPath: Restaurant.Meals.Array.data[0].Name
+      value: Meal1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114475428079576674, guid: 54c8e00be886ba14cb954692f960ae8c,
+        type: 2}
+      propertyPath: Restaurant.Meals.Array.data[1].Name
+      value: Meal2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114475428079576674, guid: 54c8e00be886ba14cb954692f960ae8c,
+        type: 2}
+      propertyPath: Restaurant.Meals.Array.data[2].Name
+      value: Meal3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114475428079576674, guid: 54c8e00be886ba14cb954692f960ae8c,
+        type: 2}
+      propertyPath: Restaurant.Meals.Array.data[3].Name
+      value: Meal4
+      objectReference: {fileID: 0}
+    - target: {fileID: 114475428079576674, guid: 54c8e00be886ba14cb954692f960ae8c,
+        type: 2}
+      propertyPath: Restaurant.Meals.Array.data[4].Name
+      value: Meal5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114475428079576674, guid: 54c8e00be886ba14cb954692f960ae8c,
+        type: 2}
+      propertyPath: Restaurant.Meals.Array.data[0].MealPrefab
+      value: 
+      objectReference: {fileID: 1820143007373238, guid: a354f9bf50d873d4bb64a162a81c9a23,
+        type: 2}
+    - target: {fileID: 114475428079576674, guid: 54c8e00be886ba14cb954692f960ae8c,
+        type: 2}
+      propertyPath: Restaurant.Meals.Array.data[1].MealPrefab
+      value: 
+      objectReference: {fileID: 1820143007373238, guid: 3334e2a097a70b249ad64c6c34099cf6,
+        type: 2}
+    - target: {fileID: 114475428079576674, guid: 54c8e00be886ba14cb954692f960ae8c,
+        type: 2}
+      propertyPath: Restaurant.Meals.Array.data[2].MealPrefab
+      value: 
+      objectReference: {fileID: 1820143007373238, guid: eab1ee1967b7b6c4e9a3fd4bbeec50c8,
+        type: 2}
+    - target: {fileID: 114475428079576674, guid: 54c8e00be886ba14cb954692f960ae8c,
+        type: 2}
+      propertyPath: Restaurant.Meals.Array.data[3].MealPrefab
+      value: 
+      objectReference: {fileID: 1820143007373238, guid: 03d4bd3253e48f341bba632024d6bac8,
+        type: 2}
+    - target: {fileID: 114475428079576674, guid: 54c8e00be886ba14cb954692f960ae8c,
+        type: 2}
+      propertyPath: Restaurant.Meals.Array.data[4].MealPrefab
+      value: 
+      objectReference: {fileID: 1820143007373238, guid: 5ef6de954a2421d408811a52a01cdb80,
+        type: 2}
+    - target: {fileID: 1968851825105182, guid: 54c8e00be886ba14cb954692f960ae8c, type: 2}
+      propertyPath: m_TagString
+      value: RestaurantCollider
+      objectReference: {fileID: 0}
+    - target: {fileID: 65535896035419164, guid: 54c8e00be886ba14cb954692f960ae8c,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 65535896035419164, guid: 54c8e00be886ba14cb954692f960ae8c,
+        type: 2}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114475428079576674, guid: 54c8e00be886ba14cb954692f960ae8c,
+        type: 2}
+      propertyPath: MealsOffered
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 54c8e00be886ba14cb954692f960ae8c, type: 2}
@@ -330,7 +409,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4510433684957476, guid: ae43a1f4d07246e44b83d6bcb6c3b6f5, type: 2}
       propertyPath: m_LocalPosition.z
-      value: -4.56
+      value: -5.423
       objectReference: {fileID: 0}
     - target: {fileID: 4510433684957476, guid: ae43a1f4d07246e44b83d6bcb6c3b6f5, type: 2}
       propertyPath: m_LocalRotation.x
@@ -358,46 +437,4 @@ Prefab:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ae43a1f4d07246e44b83d6bcb6c3b6f5, type: 2}
-  m_IsPrefabParent: 0
---- !u!1001 &2125285681
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4579804638388130, guid: a354f9bf50d873d4bb64a162a81c9a23, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 0.813
-      objectReference: {fileID: 0}
-    - target: {fileID: 4579804638388130, guid: a354f9bf50d873d4bb64a162a81c9a23, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 1.052
-      objectReference: {fileID: 0}
-    - target: {fileID: 4579804638388130, guid: a354f9bf50d873d4bb64a162a81c9a23, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: -9.714844
-      objectReference: {fileID: 0}
-    - target: {fileID: 4579804638388130, guid: a354f9bf50d873d4bb64a162a81c9a23, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0.14110355
-      objectReference: {fileID: 0}
-    - target: {fileID: 4579804638388130, guid: a354f9bf50d873d4bb64a162a81c9a23, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4579804638388130, guid: a354f9bf50d873d4bb64a162a81c9a23, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4579804638388130, guid: a354f9bf50d873d4bb64a162a81c9a23, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 0.9899948
-      objectReference: {fileID: 0}
-    - target: {fileID: 4579804638388130, guid: a354f9bf50d873d4bb64a162a81c9a23, type: 2}
-      propertyPath: m_RootOrder
-      value: 4
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: a354f9bf50d873d4bb64a162a81c9a23, type: 2}
   m_IsPrefabParent: 0

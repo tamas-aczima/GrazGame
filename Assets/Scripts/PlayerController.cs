@@ -1,4 +1,7 @@
-﻿using System.Collections;
+﻿using Assets.Scripts;
+using Assets.Scripts.Classes;
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -12,6 +15,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float walkSpeed;
     [SerializeField] private Camera cam;
     [SerializeField] private float rayDistance;
+
+    public Meal TakenMealToServe;
 
     private void Start()
     {
@@ -83,6 +88,66 @@ public class PlayerController : MonoBehaviour
                 {
                     hit.collider.gameObject.GetComponent<CustomerController>().IsServed = true;
                     hit.collider.gameObject.GetComponent<CustomerController>().HasAllergen = true;
+                }
+            }
+        }
+    }
+
+    private FoodGenerationScript foodGenerationScript;
+
+    private void OnControllerColliderHit(ControllerColliderHit hit)
+    {
+        var restaurant = GameObject.FindGameObjectWithTag("RestaurantCollider");
+        if (hit.collider.gameObject == restaurant)
+        {
+            Debug.Log("touching restaurant collider");
+            foodGenerationScript = restaurant.gameObject.GetComponent<FoodGenerationScript>();
+            if (!foodGenerationScript.MealsOffered)
+                foodGenerationScript.DoMealGenerationThings();
+        }
+        else
+        {
+            Debug.Log("exit restaurant collider");
+        }
+
+        InvokeRepeating("ChooseMeal", 0.5f, 1);
+    }
+
+    private void ChooseMeal()
+    {
+        Ray ray = cam.ScreenPointToRay(Input.mousePosition);
+        Debug.DrawRay(ray.origin, ray.direction);
+        if (Input.GetKeyDown(KeyCode.Mouse0))
+        {
+            //Ray ray = new Ray(gameObject.transform.position, gameObject.transform.forward);
+            RaycastHit hit;
+
+            var layerMask = LayerMask.GetMask("Meal");
+
+            if (Physics.Raycast(ray, out hit, 20f, layerMask))
+            {
+                Debug.Log("layer hit: " + hit.collider.gameObject.layer);
+                if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Meal"))
+                {
+                    var colliderName = hit.collider.gameObject.name;
+                    if (colliderName == "MealRight" || colliderName == "MealLeft")
+
+                        if (colliderName == "MealRight")
+                        {
+                            TakenMealToServe = foodGenerationScript.currentMeals["MealRight"];
+                            Destroy(foodGenerationScript.MealRight);
+                            foodGenerationScript.MealRight = null;
+                            foodGenerationScript.MealsOffered = false;
+                            Debug.Log("Right meal picked");
+                        }
+                        else if (colliderName == "MealLeft")
+                        {
+                            TakenMealToServe = foodGenerationScript.currentMeals["MealLeft"];
+                            Destroy(foodGenerationScript.MealLeft);
+                            foodGenerationScript.MealLeft = null;
+                            foodGenerationScript.MealsOffered = false;
+                            Debug.Log("Left meal picked");
+                        }
                 }
             }
         }

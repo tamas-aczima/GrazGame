@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace Assets.Scripts.Classes
 {
@@ -10,6 +11,8 @@ namespace Assets.Scripts.Classes
         public string Name;
 
         public List<Allergens> Allergens;
+
+        public GameObject MealPrefab;
 
         public Meal(string name, List<Allergens> allergens)
         {
