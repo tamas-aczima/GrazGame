@@ -25,7 +25,7 @@ GameObject:
   - component: {fileID: 114475428079576674}
   m_Layer: 0
   m_Name: Restaurant
-  m_TagString: Untagged
+  m_TagString: RestaurantCollider
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -107,4 +107,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Restaurant:
     Name: 
-    Meals: []
+    Meals:
+    - Name: Meal1
+      Allergens: 
+      MealPrefab: {fileID: 1820143007373238, guid: a354f9bf50d873d4bb64a162a81c9a23,
+        type: 2}
+    - Name: Meal2
+      Allergens: 
+      MealPrefab: {fileID: 1820143007373238, guid: 3334e2a097a70b249ad64c6c34099cf6,
+        type: 2}
+    - Name: Meal3
+      Allergens: 
+      MealPrefab: {fileID: 1820143007373238, guid: eab1ee1967b7b6c4e9a3fd4bbeec50c8,
+        type: 2}
+    - Name: Meal4
+      Allergens: 
+      MealPrefab: {fileID: 1820143007373238, guid: 03d4bd3253e48f341bba632024d6bac8,
+        type: 2}
+    - Name: Meal5
+      Allergens: 
+      MealPrefab: {fileID: 1820143007373238, guid: 5ef6de954a2421d408811a52a01cdb80,
+        type: 2}
+  MealsOffered: 0
+  MealRight: {fileID: 0}
+  MealLeft: {fileID: 0}

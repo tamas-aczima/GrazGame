@@ -57,7 +57,8 @@ namespace Assets.Scripts
                 currentMeals.Add("MealRight", Restaurant.Meals[prefabIndex]);
                 MealRight = currentMeals["MealRight"].MealPrefab;
 
-                var rightPosition = new Vector3(gameObject.transform.localPosition.x - gameObject.transform.localScale.x * 0.15f, gameObject.transform.localPosition.y, gameObject.transform.localPosition.z + 2.2f);
+                var rightPosition = gameObject.transform.position + gameObject.transform.forward * 2f - gameObject.transform.right;
+
                 MealRight = Instantiate(MealRight, rightPosition, MealRight.transform.rotation);
                 MealRight.transform.SetParent(gameObject.transform, true);
                 MealRight.name = "MealRight";
@@ -68,7 +69,8 @@ namespace Assets.Scripts
                 currentMeals.Add("MealLeft", Restaurant.Meals[prefabIndex]);
                 MealLeft = currentMeals["MealLeft"].MealPrefab;
 
-                var leftPosition = new Vector3(gameObject.transform.localPosition.x + gameObject.transform.localScale.x * 0.15f, gameObject.transform.localPosition.y, gameObject.transform.localPosition.z + 2.2f);
+                var leftPosition = gameObject.transform.position + gameObject.transform.forward * 2f + gameObject.transform.right;
+
                 MealLeft = Instantiate(MealLeft, leftPosition, MealLeft.transform.rotation);
                 MealLeft.transform.SetParent(gameObject.transform, true);
                 MealLeft.name = "MealLeft";
@@ -86,7 +88,7 @@ namespace Assets.Scripts
 
             if (MealRight == null)
             {
-                
+
             }
         }
 
