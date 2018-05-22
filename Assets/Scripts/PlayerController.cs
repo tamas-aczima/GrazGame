@@ -12,7 +12,9 @@ public class PlayerController : MonoBehaviour
     private Animator anim = null;
     private CharacterController charController = null;
     private Vector3 moveDirection = Vector3.zero;
-    private Vector3 rotateDirection = Vector3.zero;
+    private Vector3 rotateDirectionX = Vector3.zero;
+    private float rotateDirectionY = 0f;
+    [SerializeField] private float yCamRange;
     [SerializeField] private float walkSpeed;
     [SerializeField] private Camera cam;
     [SerializeField] private float rayDistance;
@@ -43,8 +45,12 @@ public class PlayerController : MonoBehaviour
 
     private void Rotate()
     {
-        rotateDirection += new Vector3(0, Input.GetAxis("Mouse X"), 0);
-        transform.rotation = Quaternion.Euler(rotateDirection);
+        rotateDirectionX += new Vector3(0, Input.GetAxis("Mouse X"), 0);
+        transform.rotation = Quaternion.Euler(rotateDirectionX);
+
+        rotateDirectionY -= Input.GetAxis("Mouse Y");
+        rotateDirectionY = Mathf.Clamp(rotateDirectionY, -yCamRange, yCamRange);
+        cam.transform.rotation = Quaternion.Euler(new Vector3(rotateDirectionY, rotateDirectionX.y, 0));
     }
 
     private void Animation()

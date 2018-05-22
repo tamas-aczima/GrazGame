@@ -6,10 +6,12 @@ public class CustomerController : MonoBehaviour {
 
     [SerializeField] private float walkSpeed;
     [SerializeField] private float rotateSpeed;
+    [SerializeField] private Canvas speechBubble;
     private Queue queue;
     private Animator anim;
     private Vector3 targetPos;
     private Vector3 targetDir = Vector3.zero;
+    private bool isFirst = false;
     private bool isServed = false;
     private bool hasAllergen = false; //temporary until we have proper food to give to customer
     private bool isDead = false;
@@ -41,7 +43,7 @@ public class CustomerController : MonoBehaviour {
                 anim.SetBool("IsInPosition", false);
                 if (Vector3.Distance(transform.position, targetPos) > 0.2f)
                 {
-                    GetTargetDir();
+                    GetTargetDir(targetPos, transform.position);
                     transform.Translate(targetDir * walkSpeed * Time.deltaTime);
                 }
                 else
@@ -51,6 +53,11 @@ public class CustomerController : MonoBehaviour {
                 break;
             case State.Wait:
                 anim.SetBool("IsInPosition", true);
+                if (isFirst)
+                {
+                    speechBubble.gameObject.SetActive(true);
+                }
+
                 if (Vector3.Distance(transform.position, targetPos) > 0.2f)
                 {
                     currentState = State.Queue;
@@ -71,14 +78,19 @@ public class CustomerController : MonoBehaviour {
                 }
                 break;
             case State.Served:
+                speechBubble.gameObject.SetActive(false);
                 anim.SetBool("IsInPosition", false);
                 targetPos = queue.QueueLeavePosition.position;
-                GetTargetDir();
+                GetTargetDir(transform.position, targetPos);
                 transform.Translate(targetDir * walkSpeed * Time.deltaTime);
                 Vector3 rotateDir = queue.QueueLeavePosition.position - transform.position;
                 float step = rotateSpeed * Time.deltaTime;
                 Vector3 newDir = Vector3.RotateTowards(transform.forward, rotateDir, step, 0.0f);
                 transform.rotation = Quaternion.LookRotation(newDir);
+                if (Vector3.Distance(transform.position, queue.QueueLeavePosition.position) < 0.1f)
+                {
+                    Destroy(gameObject);
+                }
                 break;
             case State.Dead:
                 anim.SetBool("IsDead", true);
@@ -86,10 +98,10 @@ public class CustomerController : MonoBehaviour {
         }
     }
 
-    private void GetTargetDir()
+    private void GetTargetDir(Vector3 startPos, Vector3 endPos)
     {
         if (targetDir != Vector3.zero) return;
-        targetDir = transform.position - targetPos;
+        targetDir = endPos - startPos;
         targetDir.Normalize();
         targetDir = transform.TransformDirection(targetDir);
     }
@@ -98,6 +110,12 @@ public class CustomerController : MonoBehaviour {
     {
         get { return targetPos; }
         set { targetPos = value; }
+    }
+
+    public bool IsFirst
+    {
+        get { return isFirst; }
+        set { isFirst = value; }
     }
 
     public bool IsServed

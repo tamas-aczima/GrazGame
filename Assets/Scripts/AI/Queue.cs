@@ -91,8 +91,14 @@ public class Queue : MonoBehaviour {
         if (customers.Count == 0) return;
 
         CustomerController firstCustomer = customers[0].GetComponent<CustomerController>();
+        if (!firstCustomer.IsFirst)
+        {
+            firstCustomer.IsFirst = true;
+        }
+
         if (firstCustomer.IsServed && !firstCustomer.IsDead)
         {
+            firstCustomer.IsFirst = false;
             customers.RemoveAt(0);
             rear = 0;
 
