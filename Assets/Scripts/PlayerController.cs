@@ -3,6 +3,7 @@ using Assets.Scripts.Classes;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -97,21 +98,31 @@ public class PlayerController : MonoBehaviour
 
     private void OnControllerColliderHit(ControllerColliderHit hit)
     {
-        var restaurant = GameObject.FindGameObjectWithTag("RestaurantCollider");
-        foodGenerationScript = restaurant.gameObject.GetComponent<FoodGenerationScript>();
-        if (hit.collider.gameObject == restaurant)
+        try
         {
-            Debug.Log("touching restaurant collider");
-            if (!foodGenerationScript.MealsOffered)
-                foodGenerationScript.DoMealGenerationThings();
-        }
-        else
-        {
-            Debug.Log("exit restaurant collider");
-            foodGenerationScript.HideOfferedMeals();
-        }
+            var restaurant = GameObject.FindGameObjectsWithTag("RestaurantCollider").FirstOrDefault(x => x == hit.collider.gameObject);
 
-        InvokeRepeating("ChooseMeal", 0.5f, 1);
+            if (restaurant != null)
+            {
+                foodGenerationScript = restaurant.gameObject.GetComponent<FoodGenerationScript>();
+                Debug.Log("touching restaurant collider");
+                if (!foodGenerationScript.MealsOffered)
+                    foodGenerationScript.DoMealGenerationThings();
+                InvokeRepeating("ChooseMeal", 0.5f, 1);
+            }
+            else
+            {
+                Debug.Log("exit restaurant collider");
+                CancelInvoke("ChooseMeal");
+                if (foodGenerationScript != null)
+                    foodGenerationScript.HideOfferedMeals();
+            }
+
+        }
+        catch (Exception e)
+        {
+            Debug.Log(e);
+        }
     }
 
     private void ChooseMeal()
