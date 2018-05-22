@@ -1,4 +1,5 @@
 ﻿using Assets.Scripts.Classes;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -27,35 +28,18 @@ namespace Assets.Scripts
             currentMeals = new Dictionary<string, Meal>(2);
         }
 
-        private void GenerateMeals()
+        public void Update()
         {
-            if (MealRight == null)
+            if (MealsOffered)
             {
-                int prefabIndex = Random.Range(0, Restaurant.Meals.Count);
-                currentMeals.Add("MealRight", Restaurant.Meals[prefabIndex]);
-                MealRight = currentMeals["MealRight"].MealPrefab;
+                if (MealRight != null) MealRight.SetActive(true);
+                if (MealLeft != null) MealLeft.SetActive(true);
             }
-            if (MealLeft == null)
+            else
             {
-                int prefabIndex = Random.Range(0, Restaurant.Meals.Count);
-                currentMeals.Add("MealLeft", Restaurant.Meals[prefabIndex]);
-                MealLeft = currentMeals["MealLeft"].MealPrefab;
+                if (MealRight != null) MealRight.SetActive(false);
+                if (MealLeft != null) MealLeft.SetActive(false);
             }
-            MealsOffered = true;
-        }
-
-        private void OfferMeals()
-        {
-            var leftPosition = new Vector3(gameObject.transform.localPosition.x + gameObject.transform.localScale.x * 0.15f, gameObject.transform.localPosition.y, gameObject.transform.localPosition.z + 2.2f);
-            MealLeft = Instantiate(MealLeft, leftPosition, MealLeft.transform.rotation);
-            MealLeft.transform.SetParent(gameObject.transform, true);
-            MealLeft.name = "MealLeft";
-
-
-            var rightPosition = new Vector3(gameObject.transform.localPosition.x - gameObject.transform.localScale.x * 0.15f, gameObject.transform.localPosition.y, gameObject.transform.localPosition.z + 2.2f);
-            MealRight = Instantiate(MealRight, rightPosition, MealRight.transform.rotation);
-            MealRight.transform.SetParent(gameObject.transform, true);
-            MealRight.name = "MealRight";
 
         }
 
@@ -65,5 +49,51 @@ namespace Assets.Scripts
             OfferMeals();
         }
 
+        private void GenerateMeals()
+        {
+            if (MealRight == null)
+            {
+                int prefabIndex = UnityEngine.Random.Range(0, Restaurant.Meals.Count);
+                currentMeals.Add("MealRight", Restaurant.Meals[prefabIndex]);
+                MealRight = currentMeals["MealRight"].MealPrefab;
+
+                var rightPosition = new Vector3(gameObject.transform.localPosition.x - gameObject.transform.localScale.x * 0.15f, gameObject.transform.localPosition.y, gameObject.transform.localPosition.z + 2.2f);
+                MealRight = Instantiate(MealRight, rightPosition, MealRight.transform.rotation);
+                MealRight.transform.SetParent(gameObject.transform, true);
+                MealRight.name = "MealRight";
+            }
+            if (MealLeft == null)
+            {
+                int prefabIndex = UnityEngine.Random.Range(0, Restaurant.Meals.Count);
+                currentMeals.Add("MealLeft", Restaurant.Meals[prefabIndex]);
+                MealLeft = currentMeals["MealLeft"].MealPrefab;
+
+                var leftPosition = new Vector3(gameObject.transform.localPosition.x + gameObject.transform.localScale.x * 0.15f, gameObject.transform.localPosition.y, gameObject.transform.localPosition.z + 2.2f);
+                MealLeft = Instantiate(MealLeft, leftPosition, MealLeft.transform.rotation);
+                MealLeft.transform.SetParent(gameObject.transform, true);
+                MealLeft.name = "MealLeft";
+            }
+            MealsOffered = true;
+        }
+
+        private void OfferMeals()
+        {
+            if (MealLeft == null)
+            {
+
+
+            }
+
+            if (MealRight == null)
+            {
+                
+            }
+        }
+
+
+        internal void HideOfferedMeals()
+        {
+            MealsOffered = false;
+        }
     }
 }

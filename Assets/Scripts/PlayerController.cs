@@ -98,16 +98,17 @@ public class PlayerController : MonoBehaviour
     private void OnControllerColliderHit(ControllerColliderHit hit)
     {
         var restaurant = GameObject.FindGameObjectWithTag("RestaurantCollider");
+        foodGenerationScript = restaurant.gameObject.GetComponent<FoodGenerationScript>();
         if (hit.collider.gameObject == restaurant)
         {
             Debug.Log("touching restaurant collider");
-            foodGenerationScript = restaurant.gameObject.GetComponent<FoodGenerationScript>();
             if (!foodGenerationScript.MealsOffered)
                 foodGenerationScript.DoMealGenerationThings();
         }
         else
         {
             Debug.Log("exit restaurant collider");
+            foodGenerationScript.HideOfferedMeals();
         }
 
         InvokeRepeating("ChooseMeal", 0.5f, 1);
@@ -132,20 +133,22 @@ public class PlayerController : MonoBehaviour
                     var colliderName = hit.collider.gameObject.name;
                     if (colliderName == "MealRight" || colliderName == "MealLeft")
 
-                        if (colliderName == "MealRight")
+                        if (colliderName == "MealRight" && foodGenerationScript.MealRight != null)
                         {
                             TakenMealToServe = foodGenerationScript.currentMeals["MealRight"];
                             Destroy(foodGenerationScript.MealRight);
                             foodGenerationScript.MealRight = null;
                             foodGenerationScript.MealsOffered = false;
+                            foodGenerationScript.currentMeals.Remove("MealRight");
                             Debug.Log("Right meal picked");
                         }
-                        else if (colliderName == "MealLeft")
+                        else if (colliderName == "MealLeft" && foodGenerationScript.MealLeft != null)
                         {
                             TakenMealToServe = foodGenerationScript.currentMeals["MealLeft"];
                             Destroy(foodGenerationScript.MealLeft);
                             foodGenerationScript.MealLeft = null;
                             foodGenerationScript.MealsOffered = false;
+                            foodGenerationScript.currentMeals.Remove("MealLeft");
                             Debug.Log("Left meal picked");
                         }
                 }
