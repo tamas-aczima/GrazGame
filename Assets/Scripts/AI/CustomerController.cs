@@ -7,6 +7,9 @@ public class CustomerController : MonoBehaviour {
     [SerializeField] private float walkSpeed;
     [SerializeField] private float rotateSpeed;
     [SerializeField] private Canvas speechBubble;
+    [SerializeField] private AudioSource servedSource;
+    [SerializeField] private AudioSource deathSource;
+    [SerializeField] private AudioClip[] deathClips;
     private Queue queue;
     private Animator anim;
     private Vector3 targetPos;
@@ -68,11 +71,20 @@ public class CustomerController : MonoBehaviour {
                     if (hasAllergen)
                     {
                         isDead = true;
+                        if (!deathSource.isPlaying)
+                        {
+                            deathSource.clip = deathClips[Random.Range(0, deathClips.Length)];
+                            deathSource.PlayOneShot(deathSource.clip);
+                        }
                         currentState = State.Dead;
                     }
                     else
                     {
                         targetDir = Vector3.zero;
+                        if (!servedSource.isPlaying)
+                        {
+                            servedSource.PlayOneShot(servedSource.clip);
+                        }
                         currentState = State.Served;
                     }   
                 }
@@ -94,6 +106,7 @@ public class CustomerController : MonoBehaviour {
                 break;
             case State.Dead:
                 anim.SetBool("IsDead", true);
+                speechBubble.gameObject.SetActive(false);
                 break;
         }
     }

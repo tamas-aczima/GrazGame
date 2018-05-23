@@ -5,6 +5,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
@@ -18,6 +19,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float walkSpeed;
     [SerializeField] private Camera cam;
     [SerializeField] private float rayDistance;
+    [SerializeField] private int scorePerCustomer;
+    [SerializeField] private Text scoreText;
+    private int score = 0;
 
     public Meal TakenMealToServe;
 
@@ -26,6 +30,7 @@ public class PlayerController : MonoBehaviour
         anim = GetComponent<Animator>();
         charController = GetComponent<CharacterController>();
         Cursor.lockState = CursorLockMode.Locked;
+        UpdateScore();
     }
 
     private void Update()
@@ -80,6 +85,8 @@ public class PlayerController : MonoBehaviour
                 if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Customer"))
                 {
                     hit.collider.gameObject.GetComponent<CustomerController>().IsServed = true;
+                    score += scorePerCustomer;
+                    UpdateScore();
                 }
             }
         }
@@ -98,6 +105,11 @@ public class PlayerController : MonoBehaviour
                 }
             }
         }
+    }
+
+    private void UpdateScore()
+    {
+        scoreText.text = "Score: " + score;
     }
 
     private FoodGenerationScript foodGenerationScript;
