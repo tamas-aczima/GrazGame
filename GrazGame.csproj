@@ -86,6 +86,7 @@
     <Compile Include="Assets\Scripts\Classes\Queue.cs" />
     <Compile Include="Assets\Scripts\Classes\Restaurant.cs" />
     <Compile Include="Assets\Scripts\FoodGenerationScript.cs" />
+    <Compile Include="Assets\Scripts\MainMenu.cs" />
     <Compile Include="Assets\Scripts\PlayerController.cs" />
     <Compile Include="Assets\Scripts\UIFaceCamera.cs" />
   </ItemGroup>
