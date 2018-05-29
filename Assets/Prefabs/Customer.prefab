@@ -2551,12 +2551,14 @@ MonoBehaviour:
   walkSpeed: 2
   rotateSpeed: 5
   speechBubble: {fileID: 223347946704659330}
+  speechText: {fileID: 114187881141768726}
   servedSource: {fileID: 82035263428372956}
   deathSource: {fileID: 82380739057484968}
   deathClips:
   - {fileID: 8300000, guid: e99632ae765d16d4aad722adbda825e3, type: 3}
   - {fileID: 8300000, guid: fa43a5280061fa04484eb85162700bfb, type: 3}
   - {fileID: 8300000, guid: 78439ad8a916280418a16a0381e6b060, type: 3}
+  maxAllergens: 3
 --- !u!136 &136855142596736658
 CapsuleCollider:
   m_ObjectHideFlags: 1
