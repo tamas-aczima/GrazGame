@@ -17,38 +17,37 @@ public class PlayerController : NetworkBehaviour
     [SerializeField] private Camera cam;
     [SerializeField] private float rayDistance;
     [SerializeField] private int scorePerCustomer;
-    [SerializeField] private Text scoreText;
-    [SerializeField] private Text minuteText;
-    [SerializeField] private Text secondText;
+
     private int score = 0;
     private GameManager gameManager;
 
     public Meal TakenMealToServe;
 
-    private void Start()
+    public override void OnStartLocalPlayer()
     {
         gameManager = FindObjectOfType<GameManager>();
         anim = GetComponent<Animator>();
         charController = GetComponent<CharacterController>();
         Cursor.lockState = CursorLockMode.Locked;
-        UpdateScore();
+    }
+
+    private void Start()
+    {
+        if (!isLocalPlayer)
+        {
+            cam.enabled = false;
+        }
     }
 
     private void Update()
     {
-        if (!hasAuthority)
-        {
-            cam.enabled = false;
-            return;
-        }
-
-        cam.enabled = true;
+        //cam.enabled = true;
+        if (!isLocalPlayer) return;
         Move();
         Rotate();
         Animation();
         ChooseMeal();
         ServeCustomer();
-        UpdateTimer();
     }
 
     private void Move()
@@ -83,30 +82,6 @@ public class PlayerController : NetworkBehaviour
         anim.SetFloat("MoveZ", Input.GetAxis("Vertical"));
     }
 
-    private void UpdateTimer()
-    {
-        if (minuteText.text != ((int) gameManager.GameTimer / 60).ToString())
-        {
-            minuteText.GetComponent<Animator>().Play("Animation");
-        }
-
-        minuteText.text = ((int)gameManager.GameTimer / 60).ToString();
-
-        if (((int) gameManager.GameTimer / 60) < 1 && ((int) gameManager.GameTimer % 60) <= 30 && secondText.text != ((int) gameManager.GameTimer % 60).ToString())
-        {
-            secondText.GetComponent<Animator>().Play("Animation");
-        }
-
-        if (((int)gameManager.GameTimer % 60).ToString().Length == 1)
-        {
-            secondText.text = "0" + ((int)gameManager.GameTimer % 60).ToString();
-        }
-        else
-        {
-            secondText.text = ((int)gameManager.GameTimer % 60).ToString();
-        }
-    }
-
     private void ServeCustomer()
     {
         if (Input.GetKeyDown(KeyCode.Mouse0))
@@ -120,7 +95,6 @@ public class PlayerController : NetworkBehaviour
                 {
                     hit.collider.gameObject.GetComponent<CustomerController>().IsServed = true;
                     score += scorePerCustomer;
-                    UpdateScore();
                 }
             }
         }
@@ -139,12 +113,6 @@ public class PlayerController : NetworkBehaviour
                 }
             }
         }
-    }
-
-    private void UpdateScore()
-    {
-        scoreText.GetComponent<Animator>().Play("Animation");
-        scoreText.text = score.ToString();
     }
 
     private void ChooseMeal()
