@@ -1,7 +1,5 @@
 ﻿using Assets.Scripts;
 using Assets.Scripts.Classes;
-using System;
-using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Networking;
@@ -122,17 +120,14 @@ public class PlayerController : NetworkBehaviour
     private void ChooseMeal()
     {
         Ray ray = cam.ScreenPointToRay(Input.mousePosition);
-        // Debug.DrawRay(ray.origin, ray.direction);
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
-            //Ray ray = new Ray(gameObject.transform.position, gameObject.transform.forward);
             RaycastHit hit;
 
             var layerMask = LayerMask.GetMask("Meal");
 
-            if (Physics.Raycast(ray, out hit, 5f, layerMask))
+            if (Physics.Raycast(ray, out hit, 1f, layerMask))
             {
-                //Debug.Log("layer hit: " + hit.collider.gameObject.layer);
                 if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Meal"))
                 {
                     var colliderName = hit.collider.gameObject.name;
