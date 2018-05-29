@@ -89,7 +89,7 @@ public class PlayerController : NetworkBehaviour
 
             if (Physics.Raycast(ray, out hit, rayDistance))
             {
-                if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Customer"))
+                if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Customer") && hit.collider.gameObject.GetComponent<CustomerController>() != null && !hit.collider.gameObject.GetComponent<CustomerController>().IsDead)
                 {
                     hit.collider.gameObject.GetComponent<CustomerController>().IsServed = true;
                     score += scorePerCustomer;

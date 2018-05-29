@@ -68,7 +68,6 @@ GameObject:
   - component: {fileID: 92484026988525112}
   - component: {fileID: 124115323565768874}
   - component: {fileID: 81863627265033836}
-  - component: {fileID: 114852231485752408}
   m_Layer: 0
   m_Name: FPSCamera
   m_TagString: MainCamera
@@ -377,6 +376,7 @@ GameObject:
   - component: {fileID: 114954698142896828}
   - component: {fileID: 114521246848126740}
   - component: {fileID: 114409136689573972}
+  - component: {fileID: 114596679526054284}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -788,10 +788,9 @@ GameObject:
   m_Component:
   - component: {fileID: 224566920115968074}
   - component: {fileID: 222809305656078532}
-  - component: {fileID: 114105893463342094}
-  - component: {fileID: 114298849743850496}
+  - component: {fileID: 114409130809553060}
   m_Layer: 0
-  m_Name: Text
+  m_Name: ScoreText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2353,18 +2352,7 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &114105893463342094
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1490342466584976}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &114298849743850496
+--- !u!114 &114409130809553060
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -2372,30 +2360,31 @@ MonoBehaviour:
   m_GameObject: {fileID: 1490342466584976}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_SceneId:
-    m_Value: 0
-  m_AssetId:
-    i0: 174
-    i1: 67
-    i2: 161
-    i3: 244
-    i4: 208
-    i5: 114
-    i6: 70
-    i7: 228
-    i8: 75
-    i9: 131
-    i10: 214
-    i11: 188
-    i12: 182
-    i13: 195
-    i14: 182
-    i15: 245
-  m_ServerOnly: 0
-  m_LocalPlayerAuthority: 1
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 70
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 0
+    m_MaxSize: 80
+    m_Alignment: 3
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: 'Score: 8008'
 --- !u!114 &114409136689573972
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2470,6 +2459,25 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
+--- !u!114 &114596679526054284
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1236539726847742}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1590678366, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Animator: {fileID: 95219262780933552}
+  m_ParameterSendBits: 0
+  param0: 
+  param1: 
+  param2: 
+  param3: 
+  param4: 
+  param5: 
 --- !u!114 &114735893536293712
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2486,39 +2494,6 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &114852231485752408
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1019872460630168}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8fb2172b64b6b6a46895758227428be4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 3}
-    m_FontSize: 70
-    m_FontStyle: 0
-    m_BestFit: 0
-    m_MinSize: 0
-    m_MaxSize: 80
-    m_Alignment: 3
-    m_AlignByGeometry: 0
-    m_RichText: 1
-    m_HorizontalOverflow: 0
-    m_VerticalOverflow: 0
-    m_LineSpacing: 1
-  m_Text: 'Score: '
 --- !u!114 &114954698142896828
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2534,8 +2509,8 @@ MonoBehaviour:
   walkSpeed: 3
   cam: {fileID: 20266228675772140}
   rayDistance: 1
-  scorePerCustomer: 0
-  scoreText: {fileID: 0}
+  scorePerCustomer: 100
+  scoreText: {fileID: 114409130809553060}
   TakenMealToServe:
     Name: 
     Allergens: 

@@ -1,12 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CustomerController : MonoBehaviour {
 
     [SerializeField] private float walkSpeed;
     [SerializeField] private float rotateSpeed;
     [SerializeField] private Canvas speechBubble;
+    [SerializeField] private Text speechText;
     [SerializeField] private AudioSource servedSource;
     [SerializeField] private AudioSource deathSource;
     [SerializeField] private AudioClip[] deathClips;
@@ -28,9 +30,27 @@ public class CustomerController : MonoBehaviour {
 
     private State currentState = State.Queue;
 
+    [SerializeField] private int maxAllergens;
+    private int numberOfAllergens;
+    private List<Allergens> allergens = new List<Allergens>();
+
     private void Start()
     {
         anim = GetComponent<Animator>();
+        numberOfAllergens = Random.Range(0, maxAllergens);
+        for (int i = 0; i < numberOfAllergens; i++)
+        {
+            allergens.Add(GetRandomEnum<Allergens>());
+        }
+
+        if (allergens.Count == 1)
+        {
+            speechText.text = "I'm allergic to " + allergens[0];
+        }
+        else if (allergens.Count == 2)
+        {
+            speechText.text = "I'm allergic to " + allergens[0] + " and " + allergens[1];
+        }
     }
 
     private void Update()
@@ -152,5 +172,12 @@ public class CustomerController : MonoBehaviour {
     {
         get { return queue; }
         set { queue = value; }
+    }
+
+    static T GetRandomEnum<T>()
+    {
+        System.Array A = System.Enum.GetValues(typeof(T));
+        T V = (T)A.GetValue(Random.Range(0, A.Length));
+        return V;
     }
 }
