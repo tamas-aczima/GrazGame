@@ -1,5 +1,4 @@
 ﻿using Assets.Scripts.Classes;
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,51 +8,40 @@ namespace Assets.Scripts
     {
         public Restaurant Restaurant;
 
-        public bool MealsOffered;
-
         [HideInInspector]
         public GameObject MealRight, MealLeft;
 
         [HideInInspector]
         public Dictionary<string, Meal> currentMeals;
 
-        private int nonChoosenMealIndex;
 
         public void Start()
         {
-            nonChoosenMealIndex = -1;
             MealRight = null;
             MealLeft = null;
-            MealsOffered = false;
+
             currentMeals = new Dictionary<string, Meal>(2);
+        }
+
+        private void Awake()
+        {
         }
 
         public void Update()
         {
-            if (MealsOffered)
-            {
-                if (MealRight != null) MealRight.SetActive(true);
-                if (MealLeft != null) MealLeft.SetActive(true);
-            }
-            else
-            {
-                if (MealRight != null) MealRight.SetActive(false);
-                if (MealLeft != null) MealLeft.SetActive(false);
-            }
-
+            DoMealGenerationThings();
         }
 
         public void DoMealGenerationThings()
         {
             GenerateMeals();
-            OfferMeals();
         }
 
         private void GenerateMeals()
         {
             if (MealRight == null)
             {
-                int prefabIndex = UnityEngine.Random.Range(0, Restaurant.Meals.Count);
+                int prefabIndex = Random.Range(0, Restaurant.Meals.Count);
                 currentMeals.Add("MealRight", Restaurant.Meals[prefabIndex]);
                 MealRight = currentMeals["MealRight"].MealPrefab;
 
@@ -65,7 +53,7 @@ namespace Assets.Scripts
             }
             if (MealLeft == null)
             {
-                int prefabIndex = UnityEngine.Random.Range(0, Restaurant.Meals.Count);
+                int prefabIndex = Random.Range(0, Restaurant.Meals.Count);
                 currentMeals.Add("MealLeft", Restaurant.Meals[prefabIndex]);
                 MealLeft = currentMeals["MealLeft"].MealPrefab;
 
@@ -75,27 +63,6 @@ namespace Assets.Scripts
                 MealLeft.transform.SetParent(gameObject.transform, true);
                 MealLeft.name = "MealLeft";
             }
-            MealsOffered = true;
-        }
-
-        private void OfferMeals()
-        {
-            if (MealLeft == null)
-            {
-
-
-            }
-
-            if (MealRight == null)
-            {
-
-            }
-        }
-
-
-        internal void HideOfferedMeals()
-        {
-            MealsOffered = false;
         }
     }
 }

@@ -36,13 +36,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1968851825105182}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.46, z: -12.56}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalPosition: {x: -8.39, y: 1.46, z: 11.08}
   m_LocalScale: {x: 5, y: 3, z: 2}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!23 &23725665930670942
 MeshRenderer:
   m_ObjectHideFlags: 1
@@ -92,8 +92,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 2.22}
-  m_Center: {x: 0, y: 0, z: 0.63}
+  m_Size: {x: 1, y: 1, z: 1.26}
+  m_Center: {x: 0, y: 0, z: 0.08}
 --- !u!114 &114475428079576674
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -128,6 +128,5 @@ MonoBehaviour:
       Allergens: 
       MealPrefab: {fileID: 1820143007373238, guid: 5ef6de954a2421d408811a52a01cdb80,
         type: 2}
-  MealsOffered: 0
   MealRight: {fileID: 0}
   MealLeft: {fileID: 0}

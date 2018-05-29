@@ -34,7 +34,8 @@ public class PlayerController : NetworkBehaviour
 
     private void Update()
     {
-        if (!hasAuthority){
+        if (!hasAuthority)
+        {
             cam.enabled = false;
             return;
         }
@@ -43,6 +44,7 @@ public class PlayerController : NetworkBehaviour
         Move();
         Rotate();
         Animation();
+        ChooseMeal();
         ServeCustomer();
     }
 
@@ -117,41 +119,10 @@ public class PlayerController : NetworkBehaviour
         scoreText.text = "Score: " + score;
     }
 
-    private FoodGenerationScript foodGenerationScript;
-
-    private void OnControllerColliderHit(ControllerColliderHit hit)
-    {
-        try
-        {
-            var restaurant = GameObject.FindGameObjectsWithTag("RestaurantCollider").FirstOrDefault(x => x == hit.collider.gameObject);
-
-            if (restaurant != null)
-            {
-                foodGenerationScript = restaurant.gameObject.GetComponent<FoodGenerationScript>();
-                Debug.Log("touching restaurant collider");
-                if (!foodGenerationScript.MealsOffered)
-                    foodGenerationScript.DoMealGenerationThings();
-                InvokeRepeating("ChooseMeal", 0.5f, 1);
-            }
-            else
-            {
-                Debug.Log("exit restaurant collider");
-                CancelInvoke("ChooseMeal");
-                if (foodGenerationScript != null)
-                    foodGenerationScript.HideOfferedMeals();
-            }
-
-        }
-        catch (Exception e)
-        {
-            Debug.Log(e);
-        }
-    }
-
     private void ChooseMeal()
     {
         Ray ray = cam.ScreenPointToRay(Input.mousePosition);
-        Debug.DrawRay(ray.origin, ray.direction);
+        // Debug.DrawRay(ray.origin, ray.direction);
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
             //Ray ray = new Ray(gameObject.transform.position, gameObject.transform.forward);
@@ -159,30 +130,32 @@ public class PlayerController : NetworkBehaviour
 
             var layerMask = LayerMask.GetMask("Meal");
 
-            if (Physics.Raycast(ray, out hit, 20f, layerMask))
+            if (Physics.Raycast(ray, out hit, 5f, layerMask))
             {
-                Debug.Log("layer hit: " + hit.collider.gameObject.layer);
+                //Debug.Log("layer hit: " + hit.collider.gameObject.layer);
                 if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Meal"))
                 {
                     var colliderName = hit.collider.gameObject.name;
+                    var parentFoodScript = hit.collider.gameObject.GetComponentInParent<FoodGenerationScript>();
+
+
+
                     if (colliderName == "MealRight" || colliderName == "MealLeft")
 
-                        if (colliderName == "MealRight" && foodGenerationScript.MealRight != null)
+                        if (colliderName == "MealRight" && parentFoodScript.MealRight != null)
                         {
-                            TakenMealToServe = foodGenerationScript.currentMeals["MealRight"];
-                            Destroy(foodGenerationScript.MealRight);
-                            foodGenerationScript.MealRight = null;
-                            foodGenerationScript.MealsOffered = false;
-                            foodGenerationScript.currentMeals.Remove("MealRight");
+                            TakenMealToServe = parentFoodScript.currentMeals["MealRight"];
+                            Destroy(parentFoodScript.MealRight);
+                            parentFoodScript.MealRight = null;
+                            parentFoodScript.currentMeals.Remove("MealRight");
                             Debug.Log("Right meal picked");
                         }
-                        else if (colliderName == "MealLeft" && foodGenerationScript.MealLeft != null)
+                        else if (colliderName == "MealLeft" && parentFoodScript.MealLeft != null)
                         {
-                            TakenMealToServe = foodGenerationScript.currentMeals["MealLeft"];
-                            Destroy(foodGenerationScript.MealLeft);
-                            foodGenerationScript.MealLeft = null;
-                            foodGenerationScript.MealsOffered = false;
-                            foodGenerationScript.currentMeals.Remove("MealLeft");
+                            TakenMealToServe = parentFoodScript.currentMeals["MealLeft"];
+                            Destroy(parentFoodScript.MealLeft);
+                            parentFoodScript.MealLeft = null;
+                            parentFoodScript.currentMeals.Remove("MealLeft");
                             Debug.Log("Left meal picked");
                         }
                 }
