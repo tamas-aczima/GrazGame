@@ -18,12 +18,16 @@ public class PlayerController : NetworkBehaviour
     [SerializeField] private float rayDistance;
     [SerializeField] private int scorePerCustomer;
     [SerializeField] private Text scoreText;
+    [SerializeField] private Text minuteText;
+    [SerializeField] private Text secondText;
     private int score = 0;
+    private GameManager gameManager;
 
     public Meal TakenMealToServe;
 
     private void Start()
     {
+        gameManager = FindObjectOfType<GameManager>();
         anim = GetComponent<Animator>();
         charController = GetComponent<CharacterController>();
         Cursor.lockState = CursorLockMode.Locked;
@@ -44,6 +48,7 @@ public class PlayerController : NetworkBehaviour
         Animation();
         ChooseMeal();
         ServeCustomer();
+        UpdateTimer();
     }
 
     private void Move()
@@ -76,6 +81,30 @@ public class PlayerController : NetworkBehaviour
 
         anim.SetFloat("MoveX", Input.GetAxis("Horizontal"));
         anim.SetFloat("MoveZ", Input.GetAxis("Vertical"));
+    }
+
+    private void UpdateTimer()
+    {
+        if (minuteText.text != ((int) gameManager.GameTimer / 60).ToString())
+        {
+            minuteText.GetComponent<Animator>().Play("Animation");
+        }
+
+        minuteText.text = ((int)gameManager.GameTimer / 60).ToString();
+
+        if (((int) gameManager.GameTimer / 60) < 1 && ((int) gameManager.GameTimer % 60) <= 30 && secondText.text != ((int) gameManager.GameTimer % 60).ToString())
+        {
+            secondText.GetComponent<Animator>().Play("Animation");
+        }
+
+        if (((int)gameManager.GameTimer % 60).ToString().Length == 1)
+        {
+            secondText.text = "0" + ((int)gameManager.GameTimer % 60).ToString();
+        }
+        else
+        {
+            secondText.text = ((int)gameManager.GameTimer % 60).ToString();
+        }
     }
 
     private void ServeCustomer()
@@ -114,7 +143,8 @@ public class PlayerController : NetworkBehaviour
 
     private void UpdateScore()
     {
-        scoreText.text = "Score: " + score;
+        scoreText.GetComponent<Animator>().Play("Animation");
+        scoreText.text = score.ToString();
     }
 
     private void ChooseMeal()
