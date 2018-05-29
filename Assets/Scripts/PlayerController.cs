@@ -1,13 +1,12 @@
 ﻿using Assets.Scripts;
 using Assets.Scripts.Classes;
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Networking;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : NetworkBehaviour
 {
 
     private Animator anim = null;
@@ -35,6 +34,12 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+        if (!hasAuthority){
+            cam.enabled = false;
+            return;
+        }
+
+        cam.enabled = true;
         Move();
         Rotate();
         Animation();
