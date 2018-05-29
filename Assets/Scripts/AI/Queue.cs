@@ -10,7 +10,7 @@ public class Queue : NetworkBehaviour {
     private Transform queueStartPosition;
     private Transform[] queuePositions;
     [SerializeField] private Transform queueLeavePosition;
-    [SyncVar] private int rear;
+    private int rear;
 
     private enum QueueOrientation
     {
@@ -24,8 +24,8 @@ public class Queue : NetworkBehaviour {
     private List<GameObject> customers = new List<GameObject>();
     [SerializeField] private float customerSpawnTime;
     private float customerSpawnTimer;
-
-    private void Start()
+    
+    public override void OnStartServer()
     {
         queueStartPosition = GetComponent<Transform>();
         GenerateQueue();
@@ -35,7 +35,7 @@ public class Queue : NetworkBehaviour {
     {
         if (!isServer) return;
         SpawnCustomer();
-        RpcManageQueue();
+        ManageQueue();
     }
 
     private void GenerateQueue()
@@ -74,14 +74,21 @@ public class Queue : NetworkBehaviour {
         {
             case QueueOrientation.x:
                 customer = Instantiate(customerPrefab, queuePositions[queuePositions.Length - 1].position - new Vector3(3, 0, 0), Quaternion.Euler(new Vector3(0, 90, 0)));
-                NetworkServer.Spawn(customer);
                 break;
             case QueueOrientation.z:
                 customer = Instantiate(customerPrefab, queuePositions[queuePositions.Length - 1].position - new Vector3(0, 0, 3), Quaternion.identity);
-                NetworkServer.Spawn(customer);
                 break;
         }
 
+        CustomerController cController = customer.GetComponent<CustomerController>();
+        cController.numberOfAllergens = Random.Range(0, cController.maxAllergens);
+        for (int i = 0; i < cController.numberOfAllergens; i++)
+        {
+            //cController.allergens.Add(GetRandomEnum<Allergens>());
+            cController.allergens.Add(Random.Range(0, System.Enum.GetNames(typeof(Allergens)).Length));
+        }
+
+        NetworkServer.Spawn(customer);
         customers.Add(customer);
         customersSpawned++;
         customer.GetComponent<CustomerController>().TargetPos = queuePositions[rear].position;
@@ -89,8 +96,7 @@ public class Queue : NetworkBehaviour {
         rear++;
     }
 
-    [ClientRpc]
-    private void RpcManageQueue()
+    private void ManageQueue()
     {
         if (customers.Count == 0) return;
 
@@ -117,5 +123,12 @@ public class Queue : NetworkBehaviour {
     public Transform QueueLeavePosition
     {
         get { return queueLeavePosition; }
+    }
+
+    static T GetRandomEnum<T>()
+    {
+        System.Array A = System.Enum.GetValues(typeof(T));
+        T V = (T)A.GetValue(Random.Range(0, A.Length));
+        return V;
     }
 }

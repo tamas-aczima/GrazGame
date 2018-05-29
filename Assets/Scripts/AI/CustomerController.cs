@@ -31,26 +31,31 @@ public class CustomerController : NetworkBehaviour {
 
     private State currentState = State.Queue;
 
-    [SerializeField] private int maxAllergens;
-    private int numberOfAllergens;
-    private List<Allergens> allergens = new List<Allergens>();
+    [SyncVar] public int maxAllergens;
+    [SyncVar] public int numberOfAllergens;
+
+    public SyncListInt allergens = new SyncListInt();
+    private List<Allergens> allergies = new List<Allergens>();
 
     private void Start()
     {
         anim = GetComponent<Animator>();
-        numberOfAllergens = Random.Range(0, maxAllergens);
-        for (int i = 0; i < numberOfAllergens; i++)
+        for (int i = 0; i < allergens.Count; i++)
         {
-            allergens.Add(GetRandomEnum<Allergens>());
+            allergies.Add((Allergens)allergens[i]);
         }
+        SetText();
+    }
 
-        if (allergens.Count == 1)
+    private void SetText()
+    {
+        if (allergies.Count == 1)
         {
-            speechText.text = "I'm allergic to " + allergens[0];
+            speechText.text = "I'm allergic to " + allergies[0];
         }
-        else if (allergens.Count == 2)
+        else if (allergies.Count == 2)
         {
-            speechText.text = "I'm allergic to " + allergens[0] + " and " + allergens[1];
+            speechText.text = "I'm allergic to " + allergies[0] + " and " + allergies[1];
         }
     }
 
@@ -113,6 +118,7 @@ public class CustomerController : NetworkBehaviour {
             case State.Served:
                 speechBubble.gameObject.SetActive(false);
                 anim.SetBool("IsInPosition", false);
+                if (!isServer) return;
                 targetPos = queue.QueueLeavePosition.position;
                 GetTargetDir(transform.position, targetPos);
                 transform.Translate(targetDir * walkSpeed * Time.deltaTime);
@@ -173,12 +179,5 @@ public class CustomerController : NetworkBehaviour {
     {
         get { return queue; }
         set { queue = value; }
-    }
-
-    static T GetRandomEnum<T>()
-    {
-        System.Array A = System.Enum.GetValues(typeof(T));
-        T V = (T)A.GetValue(Random.Range(0, A.Length));
-        return V;
     }
 }

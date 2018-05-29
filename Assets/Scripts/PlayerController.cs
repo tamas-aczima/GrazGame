@@ -25,6 +25,7 @@ public class PlayerController : NetworkBehaviour
 
     public override void OnStartLocalPlayer()
     {
+        AudioListener listener = gameObject.AddComponent(typeof(AudioListener)) as AudioListener;
         gameManager = FindObjectOfType<GameManager>();
         anim = GetComponent<Animator>();
         charController = GetComponent<CharacterController>();
@@ -47,7 +48,7 @@ public class PlayerController : NetworkBehaviour
         Rotate();
         Animation();
         ChooseMeal();
-        CmdServeCustomer();
+        ServeCustomer();
     }
 
     private void Move()
@@ -82,22 +83,11 @@ public class PlayerController : NetworkBehaviour
         anim.SetFloat("MoveZ", Input.GetAxis("Vertical"));
     }
 
-    [Command]
-    private void CmdServeCustomer()
+    private void ServeCustomer()
     {
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
-            Ray ray = new Ray(cam.transform.position, cam.transform.forward);
-            RaycastHit hit;
-
-            if (Physics.Raycast(ray, out hit, rayDistance))
-            {
-                if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Customer") && hit.collider.gameObject.GetComponent<CustomerController>() != null && !hit.collider.gameObject.GetComponent<CustomerController>().IsDead)
-                {
-                    hit.collider.gameObject.GetComponent<CustomerController>().IsServed = true;
-                    score += scorePerCustomer;
-                }
-            }
+            CmdServeCustomer();
         }
 
         if (Input.GetKeyDown(KeyCode.Mouse1))
@@ -112,6 +102,22 @@ public class PlayerController : NetworkBehaviour
                     hit.collider.gameObject.GetComponent<CustomerController>().IsServed = true;
                     hit.collider.gameObject.GetComponent<CustomerController>().HasAllergen = true;
                 }
+            }
+        }
+    }
+
+    [Command]
+    private void CmdServeCustomer()
+    {
+        Ray ray = new Ray(cam.transform.position, cam.transform.forward);
+        RaycastHit hit;
+
+        if (Physics.Raycast(ray, out hit, rayDistance))
+        {
+            if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Customer") && hit.collider.gameObject.GetComponent<CustomerController>() != null && !hit.collider.gameObject.GetComponent<CustomerController>().IsDead)
+            {
+                hit.collider.gameObject.GetComponent<CustomerController>().IsServed = true;
+                score += scorePerCustomer;
             }
         }
     }
