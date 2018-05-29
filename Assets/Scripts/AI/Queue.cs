@@ -1,16 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
-public class Queue : MonoBehaviour {
+public class Queue : NetworkBehaviour {
 
     [SerializeField] private int queueLength;
     [SerializeField] private int queuePositionDistance;
     private Transform queueStartPosition;
     private Transform[] queuePositions;
     [SerializeField] private Transform queueLeavePosition;
-    private int rear;
-    private int front;
+    [SyncVar] private int rear;
 
     private enum QueueOrientation
     {
@@ -33,8 +33,9 @@ public class Queue : MonoBehaviour {
 
     private void Update()
     {
+        if (!isServer) return;
         SpawnCustomer();
-        ManageQueue();
+        RpcManageQueue();
     }
 
     private void GenerateQueue()
@@ -73,9 +74,11 @@ public class Queue : MonoBehaviour {
         {
             case QueueOrientation.x:
                 customer = Instantiate(customerPrefab, queuePositions[queuePositions.Length - 1].position - new Vector3(3, 0, 0), Quaternion.Euler(new Vector3(0, 90, 0)));
+                NetworkServer.Spawn(customer);
                 break;
             case QueueOrientation.z:
                 customer = Instantiate(customerPrefab, queuePositions[queuePositions.Length - 1].position - new Vector3(0, 0, 3), Quaternion.identity);
+                NetworkServer.Spawn(customer);
                 break;
         }
 
@@ -86,7 +89,8 @@ public class Queue : MonoBehaviour {
         rear++;
     }
 
-    private void ManageQueue()
+    [ClientRpc]
+    private void RpcManageQueue()
     {
         if (customers.Count == 0) return;
 

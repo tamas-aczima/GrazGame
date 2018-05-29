@@ -35,6 +35,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4184413615434776}
   - component: {fileID: 114459297809013644}
+  - component: {fileID: 114583058261222366}
   m_Layer: 0
   m_Name: Queue
   m_TagString: Untagged
@@ -49,7 +50,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1143492215203340}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3, y: 0, z: -1}
+  m_LocalPosition: {x: -3, y: 0, z: 0.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4776450228159056}
@@ -88,3 +89,35 @@ MonoBehaviour:
     type: 2}
   maxCustomers: 10
   customerSpawnTime: 2
+--- !u!114 &114583058261222366
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1143492215203340}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 50
+    i1: 80
+    i2: 240
+    i3: 140
+    i4: 45
+    i5: 85
+    i6: 31
+    i7: 4
+    i8: 41
+    i9: 40
+    i10: 230
+    i11: 147
+    i12: 146
+    i13: 160
+    i14: 147
+    i15: 212
+  m_ServerOnly: 0
+  m_LocalPlayerAuthority: 0

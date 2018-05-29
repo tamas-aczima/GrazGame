@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Networking;
 
-public class CustomerController : MonoBehaviour {
+public class CustomerController : NetworkBehaviour {
 
     [SerializeField] private float walkSpeed;
     [SerializeField] private float rotateSpeed;
@@ -14,12 +15,12 @@ public class CustomerController : MonoBehaviour {
     [SerializeField] private AudioClip[] deathClips;
     private Queue queue;
     private Animator anim;
-    private Vector3 targetPos;
-    private Vector3 targetDir = Vector3.zero;
-    private bool isFirst = false;
-    private bool isServed = false;
-    private bool hasAllergen = false; //temporary until we have proper food to give to customer
-    private bool isDead = false;
+    [SyncVar] private Vector3 targetPos;
+    [SyncVar] private Vector3 targetDir = Vector3.zero;
+    [SyncVar] private bool isFirst = false;
+    [SyncVar] private bool isServed = false;
+    [SyncVar] private bool hasAllergen = false; //temporary until we have proper food to give to customer
+    [SyncVar] private bool isDead = false;
     private enum State
     {
         Queue,

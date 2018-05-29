@@ -47,7 +47,7 @@ public class PlayerController : NetworkBehaviour
         Rotate();
         Animation();
         ChooseMeal();
-        ServeCustomer();
+        CmdServeCustomer();
     }
 
     private void Move()
@@ -82,7 +82,8 @@ public class PlayerController : NetworkBehaviour
         anim.SetFloat("MoveZ", Input.GetAxis("Vertical"));
     }
 
-    private void ServeCustomer()
+    [Command]
+    private void CmdServeCustomer()
     {
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
