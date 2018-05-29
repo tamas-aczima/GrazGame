@@ -2488,7 +2488,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Where's my food bitch?
+  m_Text: Where's my food?
 --- !u!114 &114497874560342900
 MonoBehaviour:
   m_ObjectHideFlags: 1
