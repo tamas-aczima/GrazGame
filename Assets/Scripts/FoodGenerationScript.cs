@@ -37,14 +37,23 @@ namespace Assets.Scripts
             GenerateMeals();
         }
 
+        private int rightMealIndex;
+        private int leftMealIndex;
+
         private void GenerateMeals()
         {
             if (MealRight == null)
             {
                 int prefabIndex = Random.Range(0, Restaurant.Meals.Count);
+                while (prefabIndex == leftMealIndex)
+                {
+                    prefabIndex = Random.Range(0, Restaurant.Meals.Count);
+                }
+                rightMealIndex = prefabIndex;
                 currentMeals.Add("MealRight", Restaurant.Meals[prefabIndex]);
                 MealRight = currentMeals["MealRight"].MealPrefab;
 
+                //////////////// not good:
                 var rightPosition = gameObject.transform.position + gameObject.transform.forward * 2f - gameObject.transform.right;
 
                 MealRight = Instantiate(MealRight, rightPosition, MealRight.transform.rotation);
@@ -54,6 +63,11 @@ namespace Assets.Scripts
             if (MealLeft == null)
             {
                 int prefabIndex = Random.Range(0, Restaurant.Meals.Count);
+                while (prefabIndex == rightMealIndex)
+                {
+                    prefabIndex = Random.Range(0, Restaurant.Meals.Count);
+                }
+                leftMealIndex = prefabIndex;
                 currentMeals.Add("MealLeft", Restaurant.Meals[prefabIndex]);
                 MealLeft = currentMeals["MealLeft"].MealPrefab;
 
