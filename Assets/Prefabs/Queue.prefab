@@ -85,8 +85,9 @@ MonoBehaviour:
   queuePositionDistance: 1
   queueLeavePosition: {fileID: 4776450228159056}
   queueOrientation: 0
-  customerPrefab: {fileID: 1353140154112500, guid: 780b5eca6769ef24b9349cc4448bf056,
-    type: 2}
+  customerPrefabs:
+  - {fileID: 1481301784567932, guid: b61b26ee8516ad34886e0af9ae5b0788, type: 2}
+  - {fileID: 1353140154112500, guid: 780b5eca6769ef24b9349cc4448bf056, type: 2}
   maxCustomers: 10
   customerSpawnTime: 2
 --- !u!114 &114583058261222366
