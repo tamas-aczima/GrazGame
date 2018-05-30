@@ -19,8 +19,8 @@ public class CustomerController : NetworkBehaviour {
     [SyncVar] private Vector3 targetDir = Vector3.zero;
     [SyncVar] private bool isFirst = false;
     [SyncVar] private bool isServed = false;
-    [SyncVar] private bool hasAllergen = false; //temporary until we have proper food to give to customer
     [SyncVar] private bool isDead = false;
+    [SyncVar] private bool wrongFood = false;
     private enum State
     {
         Queue,
@@ -108,25 +108,37 @@ public class CustomerController : NetworkBehaviour {
 
                 if (isServed)
                 {
-                    if (hasAllergen)
+                    foreach (Allergens allergen in allergies)
                     {
-                        isDead = true;
-                        if (!deathSource.isPlaying)
+                        foreach (Allergens mealAllergen in servedMeal.Allergens)
                         {
-                            deathSource.clip = deathClips[Random.Range(0, deathClips.Length)];
-                            deathSource.PlayOneShot(deathSource.clip);
+                            if (allergen == mealAllergen)
+                            {
+                                isDead = true;
+                                if (!deathSource.isPlaying)
+                                {
+                                    deathSource.clip = deathClips[Random.Range(0, deathClips.Length)];
+                                    deathSource.PlayOneShot(deathSource.clip);
+                                }
+                                currentState = State.Dead;
+                            }
                         }
-                        currentState = State.Dead;
                     }
-                    else
+
+                    if ((Countries)country != servedMeal.Country || (MealTypes)mealType != servedMeal.MealType)
                     {
-                        targetDir = Vector3.zero;
-                        if (!servedSource.isPlaying)
-                        {
-                            servedSource.PlayOneShot(servedSource.clip);
-                        }
-                        currentState = State.Served;
-                    }   
+                        wrongFood = true;
+                    }
+                    
+                    //else
+                    //{
+                    //    targetDir = Vector3.zero;
+                    //    if (!servedSource.isPlaying)
+                    //    {
+                    //        servedSource.PlayOneShot(servedSource.clip);
+                    //    }
+                    //    currentState = State.Served;
+                    //}   
                 }
                 break;
             case State.Served:
@@ -193,5 +205,11 @@ public class CustomerController : NetworkBehaviour {
     {
         get { return queue; }
         set { queue = value; }
+    }
+
+    public Meal ServedMeal
+    {
+        get { return servedMeal; }
+        set { servedMeal = value; }
     }
 }

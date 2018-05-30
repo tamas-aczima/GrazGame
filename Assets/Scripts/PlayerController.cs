@@ -85,7 +85,7 @@ public class PlayerController : NetworkBehaviour
 
     private void ServeCustomer()
     {
-        if (Input.GetKeyDown(KeyCode.Mouse0))
+        if (Input.GetKeyDown(KeyCode.Mouse0) && TakenMealToServe != null)
         {
             CmdServeCustomer();
         }
@@ -116,7 +116,7 @@ public class PlayerController : NetworkBehaviour
         {
             if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Customer") && hit.collider.gameObject.GetComponent<CustomerController>() != null && !hit.collider.gameObject.GetComponent<CustomerController>().IsDead)
             {
-                hit.collider.gameObject.GetComponent<CustomerController>().IsServed = true;
+                hit.collider.gameObject.GetComponent<CustomerController>().ServedMeal = TakenMealToServe;
                 score += scorePerCustomer;
             }
         }
