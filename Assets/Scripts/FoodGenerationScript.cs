@@ -1,5 +1,4 @@
-﻿using Assets.Scripts.Classes;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -59,15 +58,15 @@ namespace Assets.Scripts
                 MealRight = currentMeals["MealRight"].MealPrefab;
 
                 //////////////// not good:
-                var rightPosition = gameObject.transform.position + gameObject.transform.forward * 2f - gameObject.transform.right;
+                var rightPosition = gameObject.transform.position + gameObject.transform.forward * 2.5f - gameObject.transform.right;
 
                 MealRight = Instantiate(MealRight, rightPosition, MealRight.transform.rotation);
                 MealRight.transform.SetParent(gameObject.transform, true);
                 MealRight.name = "MealRight";
 
                 InfoMealRight = Instantiate(MealInfoPrefab, MealRight.transform);
-                InfoMealRight.transform.SetParent(MealRight.transform, false);
                 (InfoMealRight.transform.Find("Canvas").Find("Text").GetComponent<Text>()).text = currentMeals["MealRight"].ToString();
+                InfoMealRight.transform.position = new Vector3(MealRight.transform.position.x, MealRight.transform.position.y + 1.2f, MealRight.transform.position.z - 1f);
             }
             if (MealLeft == null)
             {
@@ -80,15 +79,15 @@ namespace Assets.Scripts
                 currentMeals.Add("MealLeft", Restaurant.Meals[prefabIndex]);
                 MealLeft = currentMeals["MealLeft"].MealPrefab;
 
-                var leftPosition = gameObject.transform.position + gameObject.transform.forward * 2f + gameObject.transform.right;
+                var leftPosition = gameObject.transform.position + gameObject.transform.forward * 2.5f + gameObject.transform.right;
 
                 MealLeft = Instantiate(MealLeft, leftPosition, MealLeft.transform.rotation);
                 MealLeft.transform.SetParent(gameObject.transform, true);
                 MealLeft.name = "MealLeft";
 
                 InfoMealLeft = Instantiate(MealInfoPrefab, MealLeft.transform);
-                InfoMealLeft.transform.SetParent(MealLeft.transform, false);
                 (InfoMealLeft.transform.Find("Canvas").Find("Text").GetComponent<Text>()).text = currentMeals["MealLeft"].ToString();
+                InfoMealLeft.transform.position = new Vector3(MealLeft.transform.position.x, MealLeft.transform.position.y + 1.2f, MealLeft.transform.position.z - 1f);
             }
         }
     }

@@ -190,7 +190,7 @@ Transform:
   m_LocalScale: {x: 3, y: 1, z: 3}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &231694177
 GameObject:
@@ -447,7 +447,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4330197497700800, guid: db6931555457f2041977916fa78ee7ee, type: 2}
       propertyPath: m_RootOrder
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1597034172705186, guid: db6931555457f2041977916fa78ee7ee, type: 2}
       propertyPath: m_Name
@@ -563,7 +563,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
 --- !u!1001 &1485032524
 Prefab:
@@ -576,6 +576,31 @@ Prefab:
         type: 2}
       propertyPath: Restaurant.Meals.Array.size
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114538036916701730, guid: db6931555457f2041977916fa78ee7ee,
+        type: 2}
+      propertyPath: Restaurant.Meals.Array.data[0].Allergens.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114538036916701730, guid: db6931555457f2041977916fa78ee7ee,
+        type: 2}
+      propertyPath: Restaurant.Meals.Array.data[1].Allergens.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114538036916701730, guid: db6931555457f2041977916fa78ee7ee,
+        type: 2}
+      propertyPath: Restaurant.Meals.Array.data[2].Allergens.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114538036916701730, guid: db6931555457f2041977916fa78ee7ee,
+        type: 2}
+      propertyPath: Restaurant.Meals.Array.data[3].Allergens.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114538036916701730, guid: db6931555457f2041977916fa78ee7ee,
+        type: 2}
+      propertyPath: Restaurant.Meals.Array.data[4].Allergens.Array.size
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4330197497700800, guid: db6931555457f2041977916fa78ee7ee, type: 2}
       propertyPath: m_LocalPosition.x
@@ -607,7 +632,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4330197497700800, guid: db6931555457f2041977916fa78ee7ee, type: 2}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114538036916701730, guid: db6931555457f2041977916fa78ee7ee,
         type: 2}
@@ -674,6 +699,106 @@ Prefab:
       value: 
       objectReference: {fileID: 1615561494606966, guid: 5408811c3aef01a40aa4f76f00999f2a,
         type: 2}
+    - target: {fileID: 114538036916701730, guid: db6931555457f2041977916fa78ee7ee,
+        type: 2}
+      propertyPath: Restaurant.Meals.Array.data[0].Allergens.Array.data[0]
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 114538036916701730, guid: db6931555457f2041977916fa78ee7ee,
+        type: 2}
+      propertyPath: Restaurant.Meals.Array.data[1].Allergens.Array.data[0]
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 114538036916701730, guid: db6931555457f2041977916fa78ee7ee,
+        type: 2}
+      propertyPath: Restaurant.Meals.Array.data[2].Allergens.Array.data[1]
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 114538036916701730, guid: db6931555457f2041977916fa78ee7ee,
+        type: 2}
+      propertyPath: Restaurant.Meals.Array.data[2].Allergens.Array.data[2]
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 114538036916701730, guid: db6931555457f2041977916fa78ee7ee,
+        type: 2}
+      propertyPath: Restaurant.Meals.Array.data[1].Allergens.Array.data[1]
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 114538036916701730, guid: db6931555457f2041977916fa78ee7ee,
+        type: 2}
+      propertyPath: Restaurant.Meals.Array.data[0].Country
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114538036916701730, guid: db6931555457f2041977916fa78ee7ee,
+        type: 2}
+      propertyPath: Restaurant.Meals.Array.data[1].Country
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114538036916701730, guid: db6931555457f2041977916fa78ee7ee,
+        type: 2}
+      propertyPath: Restaurant.Meals.Array.data[3].Country
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114538036916701730, guid: db6931555457f2041977916fa78ee7ee,
+        type: 2}
+      propertyPath: Restaurant.Meals.Array.data[4].Country
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114538036916701730, guid: db6931555457f2041977916fa78ee7ee,
+        type: 2}
+      propertyPath: Restaurant.Meals.Array.data[3].MealType
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114538036916701730, guid: db6931555457f2041977916fa78ee7ee,
+        type: 2}
+      propertyPath: Restaurant.Meals.Array.data[1].MealType
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114538036916701730, guid: db6931555457f2041977916fa78ee7ee,
+        type: 2}
+      propertyPath: Restaurant.Meals.Array.data[0].MealType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114538036916701730, guid: db6931555457f2041977916fa78ee7ee,
+        type: 2}
+      propertyPath: Restaurant.Meals.Array.data[3].Allergens.Array.data[0]
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 114538036916701730, guid: db6931555457f2041977916fa78ee7ee,
+        type: 2}
+      propertyPath: Restaurant.Meals.Array.data[3].Allergens.Array.data[1]
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 114538036916701730, guid: db6931555457f2041977916fa78ee7ee,
+        type: 2}
+      propertyPath: Restaurant.Meals.Array.data[3].Allergens.Array.data[2]
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 114538036916701730, guid: db6931555457f2041977916fa78ee7ee,
+        type: 2}
+      propertyPath: Restaurant.Meals.Array.data[4].Allergens.Array.data[0]
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 114538036916701730, guid: db6931555457f2041977916fa78ee7ee,
+        type: 2}
+      propertyPath: Restaurant.Meals.Array.data[4].Allergens.Array.data[1]
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114538036916701730, guid: db6931555457f2041977916fa78ee7ee,
+        type: 2}
+      propertyPath: Restaurant.Meals.Array.data[4].MealType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114538036916701730, guid: db6931555457f2041977916fa78ee7ee,
+        type: 2}
+      propertyPath: Restaurant.Meals.Array.data[2].Country
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114538036916701730, guid: db6931555457f2041977916fa78ee7ee,
+        type: 2}
+      propertyPath: Restaurant.Meals.Array.data[2].Allergens.Array.data[0]
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: db6931555457f2041977916fa78ee7ee, type: 2}
   m_IsPrefabParent: 0

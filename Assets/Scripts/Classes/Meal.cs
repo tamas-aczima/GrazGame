@@ -34,6 +34,7 @@ public class Meal
         foreach (var allergen in Allergens)
         {
             str.Append(Enum.GetName(typeof(Allergens), allergen));
+            str.Append(", ");
         }
 
         return str.ToString();
