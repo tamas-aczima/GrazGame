@@ -109,7 +109,7 @@ public class PlayerController : NetworkBehaviour
 
     private void ChooseMeal()
     {
-        Ray ray = cam.ScreenPointToRay(Input.mousePosition);
+        Ray ray = new Ray(cam.transform.position, cam.transform.forward);
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
             RaycastHit hit;

@@ -10,9 +10,11 @@ public class CustomerController : NetworkBehaviour {
     [SerializeField] private float rotateSpeed;
     [SerializeField] private Canvas speechBubble;
     [SerializeField] private Text speechText;
-    [SerializeField] private AudioSource servedSource;
-    [SerializeField] private AudioSource deathSource;
-    [SerializeField] private AudioClip[] deathClips;
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip deatchClip;
+    [SerializeField] private AudioClip servedClip;
+    [SerializeField] private AudioClip sadClip;
+    [SerializeField] private AudioClip angryClip;
     private Queue queue;
     private Animator anim;
     [SyncVar] private Vector3 targetPos;
@@ -104,24 +106,21 @@ public class CustomerController : NetworkBehaviour {
 
                 if (servedMeal != null)
                 {
-                    isServed = true;
-                }
-
-                if (isServed)
-                {
                     foreach (Allergens allergen in allergies)
                     {
                         foreach (Allergens mealAllergen in servedMeal.Allergens)
                         {
                             if (allergen == mealAllergen)
                             {
+                                Debug.Log("Deaaaaad");
                                 isDead = true;
-                                if (!deathSource.isPlaying)
-                                {
-                                    deathSource.clip = deathClips[Random.Range(0, deathClips.Length)];
-                                    deathSource.PlayOneShot(deathSource.clip);
-                                }
+                                anim.SetBool("IsDead", true);
                                 currentState = State.Dead;
+                                if (!audioSource.isPlaying)
+                                {
+                                    audioSource.clip = deatchClip;
+                                    audioSource.PlayOneShot(audioSource.clip);
+                                }
                             }
                         }
                     }
@@ -135,21 +134,32 @@ public class CustomerController : NetworkBehaviour {
                     {
                         anim.SetBool("IsUnhappy", true);
                         anim.SetInteger("SadOrAngry", Random.Range(0, 2));
+                        if (!audioSource.isPlaying)
+                        {
+                            audioSource.clip = System.Convert.ToBoolean(anim.GetInteger("SadOrAngry")) ? angryClip : sadClip;
+                            audioSource.PlayOneShot(audioSource.clip);
+                        }
                     }
                     else
                     {
                         anim.SetBool("IsHappy", true);
+                        if (!audioSource.isPlaying)
+                        {
+                            audioSource.clip = servedClip;
+                            audioSource.PlayOneShot(audioSource.clip);
+                        }
                     }
+
+                    currentState = State.Served;
                 }
                 break;
             case State.Served:
-                if (anim.GetCurrentAnimatorStateInfo(0).normalizedTime > anim.GetCurrentAnimatorStateInfo(0).length)
+                if (isDead) currentState = State.Dead;
+
+                if (anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1 && !anim.IsInTransition(0))
                 {
+                    isServed = true;
                     targetDir = Vector3.zero;
-                    if (!servedSource.isPlaying)
-                    {
-                        servedSource.PlayOneShot(servedSource.clip);
-                    }
                     currentState = State.Finished;
                 }
                 break;
@@ -170,7 +180,6 @@ public class CustomerController : NetworkBehaviour {
                 }
                 break;
             case State.Dead:
-                anim.SetBool("IsDead", true);
                 speechBubble.gameObject.SetActive(false);
                 break;
         }

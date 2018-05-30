@@ -19,7 +19,8 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4643079743058842}
-  m_Layer: 0
+  - component: {fileID: 135792574959332054}
+  m_Layer: 9
   m_Name: Tamas3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -36,7 +37,7 @@ GameObject:
   - component: {fileID: 4804810940740924}
   - component: {fileID: 33432268141276178}
   - component: {fileID: 23746631804959244}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cylinder.005
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -109,3 +110,15 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1990009220448714}
   m_Mesh: {fileID: 4300000, guid: 87ceefaf00633bd49a1968e4bfee7fe2, type: 3}
+--- !u!135 &135792574959332054
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1371133301667862}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1
+  m_Center: {x: 0, y: 0, z: 0}

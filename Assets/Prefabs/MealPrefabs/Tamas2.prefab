@@ -19,7 +19,8 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4537892530501728}
-  m_Layer: 0
+  - component: {fileID: 135659385416958158}
+  m_Layer: 9
   m_Name: Tamas2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -36,7 +37,7 @@ GameObject:
   - component: {fileID: 4959739055094948}
   - component: {fileID: 33474840771774470}
   - component: {fileID: 23898732244436996}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cylinder.002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -64,7 +65,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1605847132736708}
   m_LocalRotation: {x: 0.00000001951542, y: -0.4502127, z: 0.000000009839713, w: 0.8929213}
-  m_LocalPosition: {x: -0.34029624, y: 0.2790895, z: -0.63123274}
+  m_LocalPosition: {x: -0.231, y: 0.2790895, z: -0.45}
   m_LocalScale: {x: 6.5582957, y: 6.558296, z: 18.926634}
   m_Children: []
   m_Father: {fileID: 4537892530501728}
@@ -109,3 +110,15 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1605847132736708}
   m_Mesh: {fileID: 4300000, guid: 625c1f42d7319db479e6874f71672b59, type: 3}
+--- !u!135 &135659385416958158
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1331700753536726}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1
+  m_Center: {x: 0, y: 0, z: 0}
