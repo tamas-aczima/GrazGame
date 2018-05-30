@@ -99,7 +99,9 @@
     <Compile Include="Assets\Scripts\AI\Queue.cs" />
     <Compile Include="Assets\Scripts\Classes\Allergens.cs" />
     <Compile Include="Assets\Scripts\Classes\Client.cs" />
+    <Compile Include="Assets\Scripts\Classes\Countries.cs" />
     <Compile Include="Assets\Scripts\Classes\Meal.cs" />
+    <Compile Include="Assets\Scripts\Classes\MealTypes.cs" />
     <Compile Include="Assets\Scripts\Classes\Queue.cs" />
     <Compile Include="Assets\Scripts\Classes\Restaurant.cs" />
     <Compile Include="Assets\Scripts\FoodGenerationScript.cs" />

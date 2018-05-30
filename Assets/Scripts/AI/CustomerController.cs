@@ -36,6 +36,8 @@ public class CustomerController : NetworkBehaviour {
 
     public SyncListInt allergens = new SyncListInt();
     private List<Allergens> allergies = new List<Allergens>();
+    [SyncVar] public int country;
+    [SyncVar] public int mealType;
 
     private void Start()
     {
@@ -49,14 +51,19 @@ public class CustomerController : NetworkBehaviour {
 
     private void SetText()
     {
-        if (allergies.Count == 1)
+        speechText.text = "I'm looking for a " + (MealTypes)mealType + " " + (Countries)country + " meal";
+
+        switch (allergies.Count)
         {
-            speechText.text = "I'm allergic to " + allergies[0];
+            case 1:
+                speechText.text += " but I'm allergic to " + allergies[0];
+                break;
+            case 2:
+                speechText.text += " but I'm allergic to " + allergies[0] + " and " + allergies[1];
+                break;
         }
-        else if (allergies.Count == 2)
-        {
-            speechText.text = "I'm allergic to " + allergies[0] + " and " + allergies[1];
-        }
+
+        speechText.text += ".";
     }
 
     private void Update()

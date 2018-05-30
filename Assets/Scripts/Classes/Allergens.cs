@@ -2,15 +2,15 @@
 
 [Serializable]
 public enum Allergens {
-    Peanuts = 0,
-    TreeNuts = 1,
-    Shellfish = 2,
-    Fish = 3,
-    Eggs = 4,
-    Lactose = 5,
-    Gluten = 6,
-    Soya = 7,
-    SesameSeeds = 8,
-    Celery = 9,
-    Mustard = 10,
+    peanuts = 0,
+    treenuts = 1,
+    shellfish = 2,
+    fish = 3,
+    eggs = 4,
+    lactose = 5,
+    gluten = 6,
+    soya = 7,
+    sesameseeds = 8,
+    celery = 9,
+    mustard = 10
 }

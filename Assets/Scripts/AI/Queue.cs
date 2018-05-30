@@ -87,6 +87,8 @@ public class Queue : NetworkBehaviour {
             //cController.allergens.Add(GetRandomEnum<Allergens>());
             cController.allergens.Add(Random.Range(0, System.Enum.GetNames(typeof(Allergens)).Length));
         }
+        cController.country = Random.Range(0, System.Enum.GetNames(typeof(Countries)).Length);
+        cController.mealType = Random.Range(0, System.Enum.GetNames(typeof(MealTypes)).Length);
 
         NetworkServer.Spawn(customer);
         customers.Add(customer);
