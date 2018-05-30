@@ -147,6 +147,7 @@ public class PlayerController : NetworkBehaviour
                             TakenMealToServe = parentFoodScript.currentMeals["MealRight"];
                             Destroy(parentFoodScript.MealRight);
                             parentFoodScript.MealRight = null;
+                            parentFoodScript.InfoMealRight = null;
                             parentFoodScript.currentMeals.Remove("MealRight");
                             Debug.Log("Right meal picked");
                         }
@@ -155,6 +156,7 @@ public class PlayerController : NetworkBehaviour
                             TakenMealToServe = parentFoodScript.currentMeals["MealLeft"];
                             Destroy(parentFoodScript.MealLeft);
                             parentFoodScript.MealLeft = null;
+                            parentFoodScript.InfoMealLeft = null;
                             parentFoodScript.currentMeals.Remove("MealLeft");
                             Debug.Log("Left meal picked");
                         }

@@ -14,6 +14,10 @@ namespace Assets.Scripts
         [HideInInspector]
         public Dictionary<string, Meal> currentMeals;
 
+        public GameObject RightMealInfoPrefab, LeftMealInfoPrefab;
+
+        [HideInInspector]
+        public GameObject InfoMealRight, InfoMealLeft;
 
         public void Start()
         {
@@ -57,6 +61,8 @@ namespace Assets.Scripts
                 var rightPosition = gameObject.transform.position + gameObject.transform.forward * 2f - gameObject.transform.right;
 
                 MealRight = Instantiate(MealRight, rightPosition, MealRight.transform.rotation);
+                InfoMealRight = Instantiate(RightMealInfoPrefab, MealRight.transform);
+
                 MealRight.transform.SetParent(gameObject.transform, true);
                 MealRight.name = "MealRight";
             }
@@ -74,6 +80,7 @@ namespace Assets.Scripts
                 var leftPosition = gameObject.transform.position + gameObject.transform.forward * 2f + gameObject.transform.right;
 
                 MealLeft = Instantiate(MealLeft, leftPosition, MealLeft.transform.rotation);
+                InfoMealLeft = Instantiate(LeftMealInfoPrefab, MealLeft.transform);
                 MealLeft.transform.SetParent(gameObject.transform, true);
                 MealLeft.name = "MealLeft";
             }
