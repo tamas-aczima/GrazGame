@@ -36,7 +36,8 @@ public class Meal
             str.Append(Enum.GetName(typeof(Allergens), allergen));
             str.Append(", ");
         }
-
-        return str.ToString();
+        string returnString = str.ToString();
+        returnString = returnString.Substring(0, returnString.Length -2);
+        return returnString;
     }
 }
