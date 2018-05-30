@@ -18,7 +18,7 @@ public class Queue : NetworkBehaviour {
         z
     }
     [SerializeField] private QueueOrientation queueOrientation;
-    [SerializeField] private GameObject customerPrefab;
+    [SerializeField] private GameObject[] customerPrefabs;
     [SerializeField] private int maxCustomers;
     private int customersSpawned;
     private List<GameObject> customers = new List<GameObject>();
@@ -73,10 +73,10 @@ public class Queue : NetworkBehaviour {
         switch (queueOrientation)
         {
             case QueueOrientation.x:
-                customer = Instantiate(customerPrefab, queuePositions[queuePositions.Length - 1].position - new Vector3(3, 0, 0), Quaternion.Euler(new Vector3(0, 90, 0)));
+                customer = Instantiate(customerPrefabs[Random.Range(0, customerPrefabs.Length)], queuePositions[queuePositions.Length - 1].position - new Vector3(3, 0, 0), Quaternion.Euler(new Vector3(0, 90, 0)));
                 break;
             case QueueOrientation.z:
-                customer = Instantiate(customerPrefab, queuePositions[queuePositions.Length - 1].position - new Vector3(0, 0, 3), Quaternion.identity);
+                customer = Instantiate(customerPrefabs[Random.Range(0, customerPrefabs.Length)], queuePositions[queuePositions.Length - 1].position - new Vector3(0, 0, 3), Quaternion.identity);
                 break;
         }
 
