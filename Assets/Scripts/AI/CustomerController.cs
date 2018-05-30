@@ -26,6 +26,7 @@ public class CustomerController : NetworkBehaviour {
         Queue,
         Wait,
         Served,
+        Finished,
         Dead
     }
 
@@ -129,19 +130,30 @@ public class CustomerController : NetworkBehaviour {
                     {
                         wrongFood = true;
                     }
-                    
-                    //else
-                    //{
-                    //    targetDir = Vector3.zero;
-                    //    if (!servedSource.isPlaying)
-                    //    {
-                    //        servedSource.PlayOneShot(servedSource.clip);
-                    //    }
-                    //    currentState = State.Served;
-                    //}   
+
+                    if (wrongFood)
+                    {
+                        anim.SetBool("IsUnhappy", true);
+                        anim.SetInteger("SadOrAngry", Random.Range(0, 2));
+                    }
+                    else
+                    {
+                        anim.SetBool("IsHappy", true);
+                    }
                 }
                 break;
             case State.Served:
+                if (anim.GetCurrentAnimatorStateInfo(0).normalizedTime > anim.GetCurrentAnimatorStateInfo(0).length)
+                {
+                    targetDir = Vector3.zero;
+                    if (!servedSource.isPlaying)
+                    {
+                        servedSource.PlayOneShot(servedSource.clip);
+                    }
+                    currentState = State.Finished;
+                }
+                break;
+            case State.Finished:
                 speechBubble.gameObject.SetActive(false);
                 anim.SetBool("IsInPosition", false);
                 if (!isServer) return;
@@ -188,12 +200,6 @@ public class CustomerController : NetworkBehaviour {
     {
         get { return isServed; }
         set { isServed = value; }
-    }
-
-    public bool HasAllergen
-    {
-        get { return hasAllergen; }
-        set { hasAllergen = value; }
     }
 
     public bool IsDead
