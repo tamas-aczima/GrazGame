@@ -30,6 +30,7 @@ public class PlayerController : NetworkBehaviour
         anim = GetComponent<Animator>();
         charController = GetComponent<CharacterController>();
         Cursor.lockState = CursorLockMode.Locked;
+        TakenMealToServe = null;
     }
 
     private void Start()
@@ -49,6 +50,7 @@ public class PlayerController : NetworkBehaviour
         Animation();
         ChooseMeal();
         ServeCustomer();
+        Debug.Log(TakenMealToServe);
     }
 
     private void Move()
@@ -88,21 +90,6 @@ public class PlayerController : NetworkBehaviour
         if (Input.GetKeyDown(KeyCode.Mouse0) && TakenMealToServe != null)
         {
             CmdServeCustomer();
-        }
-
-        if (Input.GetKeyDown(KeyCode.Mouse1))
-        {
-            Ray ray = new Ray(cam.transform.position, cam.transform.forward);
-            RaycastHit hit;
-
-            if (Physics.Raycast(ray, out hit, rayDistance))
-            {
-                if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Customer"))
-                {
-                    hit.collider.gameObject.GetComponent<CustomerController>().IsServed = true;
-                    hit.collider.gameObject.GetComponent<CustomerController>().HasAllergen = true;
-                }
-            }
         }
     }
 
