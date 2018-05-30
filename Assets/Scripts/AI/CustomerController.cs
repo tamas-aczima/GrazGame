@@ -39,6 +39,8 @@ public class CustomerController : NetworkBehaviour {
     [SyncVar] public int country;
     [SyncVar] public int mealType;
 
+    private Meal servedMeal;
+
     private void Start()
     {
         anim = GetComponent<Animator>();
@@ -97,6 +99,11 @@ public class CustomerController : NetworkBehaviour {
                 if (Vector3.Distance(transform.position, targetPos) > 0.2f)
                 {
                     currentState = State.Queue;
+                }
+
+                if (servedMeal != null)
+                {
+                    isServed = true;
                 }
 
                 if (isServed)
