@@ -28,6 +28,7 @@ public class Meal
         var str = new StringBuilder();
         str.Append("Meal: ");
         str.Append(Name);
+        str.Append("\n");
         str.Append("Allergens: ");
 
         foreach (var allergen in Allergens)

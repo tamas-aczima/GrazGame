@@ -362,7 +362,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4330197497700800, guid: db6931555457f2041977916fa78ee7ee, type: 2}
       propertyPath: m_RootOrder
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 1597034172705186, guid: db6931555457f2041977916fa78ee7ee, type: 2}
       propertyPath: m_Name
@@ -398,6 +398,10 @@ Prefab:
       value: 
       objectReference: {fileID: 1984919304760872, guid: f71adfce5937c8b4393fdb4244790acc,
         type: 2}
+    - target: {fileID: 1597034172705186, guid: db6931555457f2041977916fa78ee7ee, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: db6931555457f2041977916fa78ee7ee, type: 2}
   m_IsPrefabParent: 0
@@ -443,7 +447,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4330197497700800, guid: db6931555457f2041977916fa78ee7ee, type: 2}
       propertyPath: m_RootOrder
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 1597034172705186, guid: db6931555457f2041977916fa78ee7ee, type: 2}
       propertyPath: m_Name
@@ -481,52 +485,6 @@ Prefab:
         type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: db6931555457f2041977916fa78ee7ee, type: 2}
-  m_IsPrefabParent: 0
---- !u!1001 &1153348774
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 400004, guid: 6ebeb1865320e9f48a5e812ee724f83d, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -3.4231267
-      objectReference: {fileID: 0}
-    - target: {fileID: 400004, guid: 6ebeb1865320e9f48a5e812ee724f83d, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -2.1053714e-17
-      objectReference: {fileID: 0}
-    - target: {fileID: 400004, guid: 6ebeb1865320e9f48a5e812ee724f83d, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 2.8445249
-      objectReference: {fileID: 0}
-    - target: {fileID: 400004, guid: 6ebeb1865320e9f48a5e812ee724f83d, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 400004, guid: 6ebeb1865320e9f48a5e812ee724f83d, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 400004, guid: 6ebeb1865320e9f48a5e812ee724f83d, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 400004, guid: 6ebeb1865320e9f48a5e812ee724f83d, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 400004, guid: 6ebeb1865320e9f48a5e812ee724f83d, type: 3}
-      propertyPath: m_RootOrder
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 400002, guid: 6ebeb1865320e9f48a5e812ee724f83d, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.067
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 6ebeb1865320e9f48a5e812ee724f83d, type: 3}
   m_IsPrefabParent: 0
 --- !u!1 &1209256132
 GameObject:
@@ -605,7 +563,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
 --- !u!1001 &1485032524
 Prefab:
@@ -649,7 +607,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4330197497700800, guid: db6931555457f2041977916fa78ee7ee, type: 2}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 114538036916701730, guid: db6931555457f2041977916fa78ee7ee,
         type: 2}
@@ -710,6 +668,12 @@ Prefab:
       propertyPath: m_Name
       value: BosnianRestaurant
       objectReference: {fileID: 0}
+    - target: {fileID: 114538036916701730, guid: db6931555457f2041977916fa78ee7ee,
+        type: 2}
+      propertyPath: MealInfoPrefab
+      value: 
+      objectReference: {fileID: 1615561494606966, guid: 5408811c3aef01a40aa4f76f00999f2a,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: db6931555457f2041977916fa78ee7ee, type: 2}
   m_IsPrefabParent: 0
@@ -773,5 +737,5 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

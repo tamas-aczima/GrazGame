@@ -110,3 +110,7 @@ MonoBehaviour:
     Meals: []
   MealRight: {fileID: 0}
   MealLeft: {fileID: 0}
+  MealInfoPrefab: {fileID: 1615561494606966, guid: 5408811c3aef01a40aa4f76f00999f2a,
+    type: 2}
+  InfoMealRight: {fileID: 0}
+  InfoMealLeft: {fileID: 0}

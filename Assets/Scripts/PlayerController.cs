@@ -122,9 +122,7 @@ public class PlayerController : NetworkBehaviour
                 {
                     var colliderName = hit.collider.gameObject.name;
                     var parentFoodScript = hit.collider.gameObject.GetComponentInParent<FoodGenerationScript>();
-
-
-
+                                        
                     if (colliderName == "MealRight" || colliderName == "MealLeft")
 
                         if (colliderName == "MealRight" && parentFoodScript.MealRight != null)

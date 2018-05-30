@@ -1,6 +1,7 @@
 ﻿using Assets.Scripts.Classes;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Assets.Scripts
 {
@@ -14,7 +15,7 @@ namespace Assets.Scripts
         [HideInInspector]
         public Dictionary<string, Meal> currentMeals;
 
-        public GameObject RightMealInfoPrefab, LeftMealInfoPrefab;
+        public GameObject MealInfoPrefab;
 
         [HideInInspector]
         public GameObject InfoMealRight, InfoMealLeft;
@@ -61,10 +62,12 @@ namespace Assets.Scripts
                 var rightPosition = gameObject.transform.position + gameObject.transform.forward * 2f - gameObject.transform.right;
 
                 MealRight = Instantiate(MealRight, rightPosition, MealRight.transform.rotation);
-                InfoMealRight = Instantiate(RightMealInfoPrefab, MealRight.transform);
-
                 MealRight.transform.SetParent(gameObject.transform, true);
                 MealRight.name = "MealRight";
+
+                InfoMealRight = Instantiate(MealInfoPrefab, MealRight.transform);
+                InfoMealRight.transform.SetParent(MealRight.transform, false);
+                (InfoMealRight.transform.Find("Canvas").Find("Text").GetComponent<Text>()).text = currentMeals["MealRight"].ToString();
             }
             if (MealLeft == null)
             {
@@ -80,9 +83,12 @@ namespace Assets.Scripts
                 var leftPosition = gameObject.transform.position + gameObject.transform.forward * 2f + gameObject.transform.right;
 
                 MealLeft = Instantiate(MealLeft, leftPosition, MealLeft.transform.rotation);
-                InfoMealLeft = Instantiate(LeftMealInfoPrefab, MealLeft.transform);
                 MealLeft.transform.SetParent(gameObject.transform, true);
                 MealLeft.name = "MealLeft";
+
+                InfoMealLeft = Instantiate(MealInfoPrefab, MealLeft.transform);
+                InfoMealLeft.transform.SetParent(MealLeft.transform, false);
+                (InfoMealLeft.transform.Find("Canvas").Find("Text").GetComponent<Text>()).text = currentMeals["MealLeft"].ToString();
             }
         }
     }
