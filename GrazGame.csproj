@@ -95,6 +95,7 @@
     <Compile Include="Assets\SampleScenes\Scripts\NetworkLobbyHook.cs" />
     <Compile Include="Assets\SampleScenes\Scripts\NetworkSpaceship.cs" />
     <Compile Include="Assets\SampleScenes\Scripts\NetworkSpaceshipBullet.cs" />
+    <Compile Include="Assets\Scripts\AI\ChefController.cs" />
     <Compile Include="Assets\Scripts\AI\CustomerController.cs" />
     <Compile Include="Assets\Scripts\AI\Queue.cs" />
     <Compile Include="Assets\Scripts\Classes\Allergens.cs" />

@@ -43,14 +43,12 @@ public class PlayerController : NetworkBehaviour
 
     private void Update()
     {
-        //cam.enabled = true;
         if (!isLocalPlayer) return;
         Move();
         Rotate();
         Animation();
         ChooseMeal();
         ServeCustomer();
-        Debug.Log(TakenMealToServe);
     }
 
     private void Move()
