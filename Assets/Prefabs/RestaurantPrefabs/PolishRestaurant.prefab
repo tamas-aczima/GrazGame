@@ -11,6 +11,21 @@ Prefab:
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 1734077379656682}
   m_IsPrefabParent: 1
+--- !u!1 &1563716266118828
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4792535898375574}
+  m_Layer: 0
+  m_Name: RightFoodSpawnPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1629001974891398
 GameObject:
   m_ObjectHideFlags: 0
@@ -46,6 +61,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
+--- !u!1 &1783882844286112
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4796043299318534}
+  m_Layer: 0
+  m_Name: LeftFoodSpawnPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!4 &4061856141488000
 Transform:
   m_ObjectHideFlags: 1
@@ -66,13 +96,41 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1734077379656682}
   m_LocalRotation: {x: 0, y: 0.7071068, z: -0, w: -0.7071068}
-  m_LocalPosition: {x: 70.90525, y: 1.62, z: -32.535664}
+  m_LocalPosition: {x: 116, y: 1.62, z: -32.5}
   m_LocalScale: {x: 5, y: 3, z: 2}
   m_Children:
   - {fileID: 4061856141488000}
+  - {fileID: 4792535898375574}
+  - {fileID: 4796043299318534}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 270, z: 0}
+--- !u!4 &4792535898375574
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1563716266118828}
+  m_LocalRotation: {x: -0, y: -1, z: -0, w: 0}
+  m_LocalPosition: {x: 0.458, y: 0, z: 24.17}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4089573618920778}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4796043299318534
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1783882844286112}
+  m_LocalRotation: {x: -0, y: -1, z: -0, w: 0}
+  m_LocalPosition: {x: -0.338, y: 0, z: 24.2}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4089573618920778}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &23528972331540766
 MeshRenderer:
   m_ObjectHideFlags: 1
@@ -192,7 +250,7 @@ MonoBehaviour:
       Country: 0
       MealType: 0
       MealPrefab: {fileID: 100010, guid: cb5bd89cd9f3a964a95583df4ec31d3b, type: 3}
-    - Name: Chimney Cake
+    - Name: ' Sweet apple pancakes'
       Allergens: 0600000004000000
       Country: 0
       MealType: 0
@@ -203,3 +261,5 @@ MonoBehaviour:
     type: 2}
   InfoMealRight: {fileID: 0}
   InfoMealLeft: {fileID: 0}
+  RightSpawnPoint: {fileID: 4792535898375574}
+  LeftSpawnPoint: {fileID: 4796043299318534}

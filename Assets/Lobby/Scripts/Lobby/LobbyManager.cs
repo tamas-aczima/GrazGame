@@ -239,7 +239,6 @@ namespace Prototype.NetworkLobby
             ChangeTo(lobbyPanel);
             backDelegate = StopHostClbk;
             SetServerInfo("Hosting", networkAddress);
-            GetComponent<AudioSource>().enabled = false;
         }
 
 		public override void OnMatchCreate(bool success, string extendedInfo, MatchInfo matchInfo)

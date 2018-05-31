@@ -31,6 +31,7 @@ namespace Assets.Scripts
 
         [HideInInspector]
         public GameObject InfoMealRight, InfoMealLeft;
+        public Transform RightSpawnPoint, LeftSpawnPoint;
 
         public void Start()
         {
@@ -45,6 +46,9 @@ namespace Assets.Scripts
                 SpawnChef();
                 alertChef += AlertChef;
             }
+
+            RightSpawnPoint = gameObject.transform.Find("RightFoodSpawnPoint");
+            LeftSpawnPoint = gameObject.transform.Find("LeftFoodSpawnPoint");
         }
 
         private void Awake()
@@ -89,10 +93,9 @@ namespace Assets.Scripts
                 currentMeals.Add("MealRight", Restaurant.Meals[prefabIndex]);
                 MealRight = currentMeals["MealRight"].MealPrefab;
 
-                //////////////// not good:
-                var rightPosition = gameObject.transform.position + gameObject.transform.forward * 2.5f - gameObject.transform.right;
+                //var rightPosition = gameObject.transform.position + gameObject.transform.forward * 2.5f - gameObject.transform.right - gameObject.transform;
 
-                MealRight = Instantiate(MealRight, rightPosition, MealRight.transform.rotation);
+                MealRight = Instantiate(MealRight, RightSpawnPoint.position, MealRight.transform.rotation);
                 MealRight.transform.SetParent(gameObject.transform, true);
                 MealRight.name = "MealRight";
 
@@ -111,9 +114,9 @@ namespace Assets.Scripts
                 currentMeals.Add("MealLeft", Restaurant.Meals[prefabIndex]);
                 MealLeft = currentMeals["MealLeft"].MealPrefab;
 
-                var leftPosition = gameObject.transform.position + gameObject.transform.forward * 2.5f + gameObject.transform.right;
+                //var leftPosition = gameObject.transform.position + gameObject.transform.forward * 2.5f + gameObject.transform.right;
 
-                MealLeft = Instantiate(MealLeft, leftPosition, MealLeft.transform.rotation);
+                MealLeft = Instantiate(MealLeft, LeftSpawnPoint.position, MealLeft.transform.rotation);
                 MealLeft.transform.SetParent(gameObject.transform, true);
                 MealLeft.name = "MealLeft";
 
