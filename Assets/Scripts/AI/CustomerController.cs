@@ -15,6 +15,7 @@ public class CustomerController : NetworkBehaviour {
     [SerializeField] private AudioClip servedClip;
     [SerializeField] private AudioClip sadClip;
     [SerializeField] private AudioClip angryClip;
+    [SerializeField] private int score;
     private Queue queue;
     private Animator anim;
     [SyncVar] private Vector3 targetPos;
@@ -23,6 +24,7 @@ public class CustomerController : NetworkBehaviour {
     [SyncVar] private bool isServed = false;
     [SyncVar] private bool isDead = false;
     [SyncVar] private bool wrongFood = false;
+    [SyncVar] private bool speechBubbleEnabled = false;
     private enum State
     {
         Queue,
@@ -74,6 +76,19 @@ public class CustomerController : NetworkBehaviour {
     private void Update()
     {
         FSM();
+        ToggleSpeechBubble();
+    }
+
+    private void ToggleSpeechBubble()
+    {
+        if (!speechBubbleEnabled)
+        {
+            speechBubble.gameObject.SetActive(false);
+        }
+        else
+        {
+            speechBubble.gameObject.SetActive(true);
+        }
     }
 
     private void FSM()
@@ -96,7 +111,7 @@ public class CustomerController : NetworkBehaviour {
                 anim.SetBool("IsInPosition", true);
                 if (isFirst)
                 {
-                    speechBubble.gameObject.SetActive(true);
+                    speechBubbleEnabled = true;
                 }
 
                 if (Vector3.Distance(transform.position, targetPos) > 0.2f)
@@ -148,6 +163,12 @@ public class CustomerController : NetworkBehaviour {
                             audioSource.clip = servedClip;
                             audioSource.PlayOneShot(audioSource.clip);
                         }
+
+                        if (isServer)
+                        {
+                            GameManager gm = FindObjectOfType<GameManager>();
+                            gm.RpcUpdateScore(gm.score + score);
+                        }
                     }
 
                     currentState = State.Served;
@@ -164,7 +185,7 @@ public class CustomerController : NetworkBehaviour {
                 }
                 break;
             case State.Finished:
-                speechBubble.gameObject.SetActive(false);
+                speechBubbleEnabled = false;
                 anim.SetBool("IsInPosition", false);
                 if (!isServer) return;
                 targetPos = queue.QueueLeavePosition.position;
@@ -180,7 +201,7 @@ public class CustomerController : NetworkBehaviour {
                 }
                 break;
             case State.Dead:
-                speechBubble.gameObject.SetActive(false);
+                speechBubbleEnabled = false;
                 break;
         }
     }

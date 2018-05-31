@@ -2550,6 +2550,7 @@ MonoBehaviour:
   servedClip: {fileID: 8300000, guid: 056c05deff628c54d8985a814765642b, type: 3}
   sadClip: {fileID: 8300000, guid: b00ca5719680c5e4daeb39177f3b616d, type: 3}
   angryClip: {fileID: 8300000, guid: b00ca5719680c5e4daeb39177f3b616d, type: 3}
+  score: 100
   maxAllergens: 3
   numberOfAllergens: 0
   country: 0

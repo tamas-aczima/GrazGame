@@ -17,6 +17,7 @@ public class PlayerController : NetworkBehaviour
     [SerializeField] private Camera cam;
     [SerializeField] private float rayDistance;
     [SerializeField] private int scorePerCustomer;
+    [HideInInspector] public bool isSafe;
 
     private int score = 0;
     private GameManager gameManager;
@@ -43,7 +44,7 @@ public class PlayerController : NetworkBehaviour
 
     private void Update()
     {
-        if (!isLocalPlayer) return;
+        if (!isLocalPlayer || !charController.enabled) return;
         Move();
         Rotate();
         Animation();
@@ -154,6 +155,22 @@ public class PlayerController : NetworkBehaviour
                 parentFoodScript.Target = gameObject;
                 parentFoodScript.alertChef.Invoke();
             }
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "StartingArea")
+        {
+            isSafe = true;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.tag == "StartingArea")
+        {
+            isSafe = false;
         }
     }
 }

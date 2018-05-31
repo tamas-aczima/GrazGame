@@ -8,6 +8,7 @@ public class InGameUI : MonoBehaviour {
     [SerializeField] private Text scoreText;
     [SerializeField] private Text minuteText;
     [SerializeField] private Text secondText;
+    [SerializeField] private Canvas gameOverCanvas;
 
     public void UpdateTimer(float time)
     {
@@ -37,5 +38,15 @@ public class InGameUI : MonoBehaviour {
     {
         scoreText.GetComponent<Animator>().Play("Animation");
         scoreText.text = score.ToString();
+    }
+
+    public void ShowGameOver()
+    {
+        gameOverCanvas.gameObject.SetActive(true);
+        PlayerController[] players = FindObjectsOfType<PlayerController>();
+        foreach (PlayerController player in players)
+        {
+            player.gameObject.GetComponent<CharacterController>().enabled = false;
+        }
     }
 }
