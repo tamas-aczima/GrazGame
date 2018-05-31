@@ -4,7 +4,8 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Networking;
 
-public class ChefController : NetworkBehaviour {
+public class ChefController : NetworkBehaviour
+{
 
     private Animator anim;
     private NavMeshAgent navMeshAgent;
@@ -12,6 +13,8 @@ public class ChefController : NetworkBehaviour {
     [SyncVar] private bool shouldChase;
     [SyncVar] private GameObject target;
     [SyncVar] private Vector3 startPos;
+
+    public AudioClip chasingMusic;
 
     public bool ShouldChase
     {
@@ -59,10 +62,14 @@ public class ChefController : NetworkBehaviour {
                 break;
             case State.Chase:
                 anim.SetBool("IsChasing", true);
+                var gameManager = FindObjectOfType<GameManager>();
                 navMeshAgent.SetDestination(target.transform.position);
+                gameManager.GetComponent<AudioSource>().clip = chasingMusic;
+                gameManager.GetComponent<AudioSource>().Play();
+
                 if (Vector3.Distance(transform.position, target.transform.position) < 0.2f)
                 {
-                    target.transform.position = FindObjectOfType<GameManager>().spawnPoint.position;
+                    target.transform.position = gameManager.spawnPoint.position;
                     shouldChase = false;
                     currentState = State.Return;
                 }
