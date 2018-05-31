@@ -63,6 +63,7 @@ public class ChefController : NetworkBehaviour {
                 if (Vector3.Distance(transform.position, target.transform.position) < 0.2f)
                 {
                     target.transform.position = FindObjectOfType<GameManager>().spawnPoint.position;
+                    target.GetComponent<PlayerController>().TakenMealToServe = null;
                     shouldChase = false;
                     currentState = State.Return;
                 }
