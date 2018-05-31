@@ -67,6 +67,11 @@ public class ChefController : NetworkBehaviour {
                     shouldChase = false;
                     currentState = State.Return;
                 }
+                if (target.GetComponent<PlayerController>().isSafe)
+                {
+                    shouldChase = false;
+                    currentState = State.Return;
+                }
                 break;
             case State.Return:
                 navMeshAgent.SetDestination(startPos);

@@ -23,8 +23,15 @@ public class GameManager : NetworkBehaviour {
     private void Update()
     {
         if (!isServer) return;
-        gameTimer -= Time.deltaTime;
-        RpcUpdateTimer();
+        if (gameTimer > 0)
+        {
+            gameTimer -= Time.deltaTime;
+            RpcUpdateTimer();
+        }
+        else
+        {
+            RpcGameOver();
+        }
     }
 
     [ClientRpc]
@@ -36,8 +43,13 @@ public class GameManager : NetworkBehaviour {
     [ClientRpc]
     public void RpcUpdateScore(int value)
     {
-        Debug.Log("update score");
         ui.UpdateScore(value);
+    }
+
+    [ClientRpc]
+    public void RpcGameOver()
+    {
+        ui.ShowGameOver();
     }
 
     public float GameTimer
