@@ -1,14 +1,17 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Networking;
 
 namespace Assets.Scripts
 {
-    public class FoodGenerationScript : MonoBehaviour
+    public class FoodGenerationScript : NetworkBehaviour
     {
-        [SerializeField] private GameObject chef;
+        [SerializeField] private GameObject chefPrefab;
+        [SerializeField] private Transform chefSpawnTransform;
         private GameObject target;
         public System.Action alertChef;
+        private GameObject chef;
 
         public GameObject Target
         {
@@ -36,11 +39,22 @@ namespace Assets.Scripts
 
             currentMeals = new Dictionary<string, Meal>(2);
 
-            alertChef += AlertChef;
+            if (!isServer) return;
+            if (chefPrefab != null)
+            {
+                SpawnChef();
+                alertChef += AlertChef;
+            }
         }
 
         private void Awake()
         {
+        }
+
+        private void SpawnChef()
+        {
+            chef = Instantiate(chefPrefab, chefSpawnTransform.position, Quaternion.identity);
+            NetworkServer.Spawn(chef);
         }
 
         public void Update()

@@ -109,44 +109,50 @@ public class PlayerController : NetworkBehaviour
 
     private void ChooseMeal()
     {
-        Ray ray = new Ray(cam.transform.position, cam.transform.forward);
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
-            RaycastHit hit;
+            CmdPickupMeal();
+        }
+    }
 
-            var layerMask = LayerMask.GetMask("Meal");
+    [Command]
+    private void CmdPickupMeal()
+    {
+        Ray ray = new Ray(cam.transform.position, cam.transform.forward);
+        RaycastHit hit;
 
-            if (Physics.Raycast(ray, out hit, 1f, layerMask))
+        var layerMask = LayerMask.GetMask("Meal");
+
+        if (Physics.Raycast(ray, out hit, 1f, layerMask))
+        {
+            if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Meal"))
             {
-                if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Meal"))
-                {
-                    var colliderName = hit.collider.gameObject.name;
-                    var parentFoodScript = hit.collider.gameObject.GetComponentInParent<FoodGenerationScript>();
-                                        
-                    if (colliderName == "MealRight" || colliderName == "MealLeft")
+                var colliderName = hit.collider.gameObject.name;
+                var parentFoodScript = hit.collider.gameObject.GetComponentInParent<FoodGenerationScript>();
 
-                        if (colliderName == "MealRight" && parentFoodScript.MealRight != null)
-                        {
-                            TakenMealToServe = parentFoodScript.currentMeals["MealRight"];
-                            Destroy(parentFoodScript.MealRight);
-                            parentFoodScript.MealRight = null;
-                            parentFoodScript.InfoMealRight = null;
-                            parentFoodScript.currentMeals.Remove("MealRight");
-                            Debug.Log("Right meal picked");
-                        }
-                        else if (colliderName == "MealLeft" && parentFoodScript.MealLeft != null)
-                        {
-                            TakenMealToServe = parentFoodScript.currentMeals["MealLeft"];
-                            Destroy(parentFoodScript.MealLeft);
-                            parentFoodScript.MealLeft = null;
-                            parentFoodScript.InfoMealLeft = null;
-                            parentFoodScript.currentMeals.Remove("MealLeft");
-                            Debug.Log("Left meal picked");
-                        }
+                if (colliderName == "MealRight" || colliderName == "MealLeft")
 
-                    parentFoodScript.Target = gameObject;
-                    parentFoodScript.alertChef.Invoke();
-                }
+                    if (colliderName == "MealRight" && parentFoodScript.MealRight != null)
+                    {
+                        TakenMealToServe = parentFoodScript.currentMeals["MealRight"];
+                        Destroy(parentFoodScript.MealRight);
+                        parentFoodScript.MealRight = null;
+                        parentFoodScript.InfoMealRight = null;
+                        parentFoodScript.currentMeals.Remove("MealRight");
+                        Debug.Log("Right meal picked");
+                    }
+                    else if (colliderName == "MealLeft" && parentFoodScript.MealLeft != null)
+                    {
+                        TakenMealToServe = parentFoodScript.currentMeals["MealLeft"];
+                        Destroy(parentFoodScript.MealLeft);
+                        parentFoodScript.MealLeft = null;
+                        parentFoodScript.InfoMealLeft = null;
+                        parentFoodScript.currentMeals.Remove("MealLeft");
+                        Debug.Log("Left meal picked");
+                    }
+
+                parentFoodScript.Target = gameObject;
+                parentFoodScript.alertChef.Invoke();
             }
         }
     }
