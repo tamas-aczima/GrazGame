@@ -143,6 +143,9 @@ public class PlayerController : NetworkBehaviour
                             parentFoodScript.currentMeals.Remove("MealLeft");
                             Debug.Log("Left meal picked");
                         }
+
+                    parentFoodScript.Target = gameObject;
+                    parentFoodScript.alertChef.Invoke();
                 }
             }
         }

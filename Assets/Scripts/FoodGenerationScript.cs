@@ -6,6 +6,16 @@ namespace Assets.Scripts
 {
     public class FoodGenerationScript : MonoBehaviour
     {
+        [SerializeField] private GameObject chef;
+        private GameObject target;
+        public System.Action alertChef;
+
+        public GameObject Target
+        {
+            get { return target; }
+            set { target = value; }
+        }
+
         public Restaurant Restaurant;
 
         [HideInInspector]
@@ -25,6 +35,8 @@ namespace Assets.Scripts
             MealLeft = null;
 
             currentMeals = new Dictionary<string, Meal>(2);
+
+            alertChef += AlertChef;
         }
 
         private void Awake()
@@ -34,6 +46,12 @@ namespace Assets.Scripts
         public void Update()
         {
             DoMealGenerationThings();
+        }
+
+        private void AlertChef()
+        {
+            chef.GetComponent<ChefController>().ShouldChase = true;
+            chef.GetComponent<ChefController>().Target = target;
         }
 
         public void DoMealGenerationThings()
