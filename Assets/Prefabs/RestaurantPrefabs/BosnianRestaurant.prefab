@@ -1,0 +1,210 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 1118999580509080}
+  m_IsPrefabParent: 1
+--- !u!1 &1118999580509080
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4382028756427354}
+  - component: {fileID: 33335821236099408}
+  - component: {fileID: 65743867157276966}
+  - component: {fileID: 23992213391529960}
+  - component: {fileID: 114245670013549332}
+  - component: {fileID: 114961398137743882}
+  m_Layer: 0
+  m_Name: BosnianRestaurant
+  m_TagString: RestaurantCollider
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 4294967295
+  m_IsActive: 1
+--- !u!1 &1821590824316578
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4431096999741650}
+  m_Layer: 0
+  m_Name: ChefSpawnPos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4382028756427354
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1118999580509080}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: -0, w: -0.7071068}
+  m_LocalPosition: {x: 70.90525, y: 1.62, z: -32.535664}
+  m_LocalScale: {x: 5, y: 3, z: 2}
+  m_Children:
+  - {fileID: 4431096999741650}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 270, z: 0}
+--- !u!4 &4431096999741650
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1821590824316578}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.836, y: -0.3165, z: -0.4}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4382028756427354}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!23 &23992213391529960
+MeshRenderer:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1118999580509080}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_Materials:
+  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 1
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+--- !u!33 &33335821236099408
+MeshFilter:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1118999580509080}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!65 &65743867157276966
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1118999580509080}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1.26}
+  m_Center: {x: 0, y: 0, z: 0.08}
+--- !u!114 &114245670013549332
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1118999580509080}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83925714fe6a75e49af171448ea005c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  chefPrefab: {fileID: 1701513123747590, guid: 5e2162927d39c764bab13ff7e9212d3d, type: 2}
+  chefSpawnTransform: {fileID: 4431096999741650}
+  Restaurant:
+    Name: Bosnian restaurant
+    Meals:
+    - Name: Sarma
+      Allergens: 09000000
+      Country: 1
+      MealType: 1
+      MealPrefab: {fileID: 1710525232872036, guid: 814a73e5b899b1d42bd213b7ab334300,
+        type: 2}
+    - Name: Cevapi
+      Allergens: 0600000009000000
+      Country: 1
+      MealType: 2
+      MealPrefab: {fileID: 1206792788192980, guid: 668c6abf3f6783d4480b7672d33a8914,
+        type: 2}
+    - Name: Baklava
+      Allergens: 0100000006000000
+      Country: 1
+      MealType: 1
+      MealPrefab: {fileID: 1307135905626844, guid: d685837f12d0aca4ea969c40b4898270,
+        type: 2}
+    - Name: Burek
+      Allergens: 0600000004000000
+      Country: 1
+      MealType: 2
+      MealPrefab: {fileID: 1272243514491628, guid: e419dec04f6463b4bb7fab076b43615d,
+        type: 2}
+    - Name: Sogan dolma
+      Allergens: 06000000
+      Country: 1
+      MealType: 2
+      MealPrefab: {fileID: 1089694933525810, guid: 22ae8c764ec396e46a0f1907bf268244,
+        type: 2}
+  MealRight: {fileID: 0}
+  MealLeft: {fileID: 0}
+  MealInfoPrefab: {fileID: 1615561494606966, guid: 5408811c3aef01a40aa4f76f00999f2a,
+    type: 2}
+  InfoMealRight: {fileID: 0}
+  InfoMealLeft: {fileID: 0}
+--- !u!114 &114961398137743882
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1118999580509080}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 372142912, guid: 870353891bb340e2b2a9c8707e7419ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 95
+    i1: 182
+    i2: 214
+    i3: 246
+    i4: 168
+    i5: 202
+    i6: 53
+    i7: 148
+    i8: 59
+    i9: 52
+    i10: 115
+    i11: 241
+    i12: 206
+    i13: 255
+    i14: 49
+    i15: 231
+  m_ServerOnly: 0
+  m_LocalPlayerAuthority: 0
