@@ -25,19 +25,28 @@ public class Meal
 
     public override string ToString()
     {
-        var str = new StringBuilder();
-        str.Append("Meal: ");
-        str.Append(Name);
-        str.Append("\n");
-        str.Append("Allergens: ");
+        string returnString = string.Empty;
+        returnString += "<b>";
+        returnString += Name;
+        returnString += "</b>";
+        returnString += "\n\n";
+        returnString += "Allergens:\n";
 
-        foreach (var allergen in Allergens)
+
+        if (Allergens.Count > 0)
         {
-            str.Append(Enum.GetName(typeof(Allergens), allergen));
-            str.Append(", ");
+            returnString += "<i>";
+
+            foreach (var allergen in Allergens)
+            {
+                returnString += Enum.GetName(typeof(Allergens), allergen);
+                returnString += ", ";
+            }
+
+            returnString = returnString.Substring(0, returnString.Length - 2);
+            returnString += "</i>";
         }
-        string returnString = str.ToString();
-        returnString = returnString.Substring(0, returnString.Length -2);
+
         return returnString;
     }
 }
