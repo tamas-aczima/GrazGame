@@ -11,6 +11,21 @@ Prefab:
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 1817543310504294}
   m_IsPrefabParent: 1
+--- !u!1 &1765571858879110
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4610117205487112}
+  m_Layer: 0
+  m_Name: ChefSpawnPos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1817543310504294
 GameObject:
   m_ObjectHideFlags: 0
@@ -28,7 +43,7 @@ GameObject:
   m_TagString: RestaurantCollider
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &4536929538389404
 Transform:
@@ -39,10 +54,24 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 3.6016152, y: 0.96, z: -3.8713503}
   m_LocalScale: {x: 5, y: 3, z: 2}
-  m_Children: []
+  m_Children:
+  - {fileID: 4610117205487112}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+--- !u!4 &4610117205487112
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1765571858879110}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.677, y: -0.3165, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4536929538389404}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &23949158234662982
 MeshRenderer:
   m_ObjectHideFlags: 1
@@ -105,6 +134,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83925714fe6a75e49af171448ea005c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  chefPrefab: {fileID: 1701513123747590, guid: 5e2162927d39c764bab13ff7e9212d3d, type: 2}
+  chefSpawnTransform: {fileID: 4610117205487112}
   Restaurant:
     Name: 
     Meals:
@@ -140,3 +171,7 @@ MonoBehaviour:
         type: 2}
   MealRight: {fileID: 0}
   MealLeft: {fileID: 0}
+  MealInfoPrefab: {fileID: 1615561494606966, guid: 5408811c3aef01a40aa4f76f00999f2a,
+    type: 2}
+  InfoMealRight: {fileID: 0}
+  InfoMealLeft: {fileID: 0}
