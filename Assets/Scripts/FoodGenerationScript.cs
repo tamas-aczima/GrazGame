@@ -33,6 +33,11 @@ namespace Assets.Scripts
         public GameObject InfoMealRight, InfoMealLeft;
         public Transform RightSpawnPoint, LeftSpawnPoint;
 
+        public AudioClip ChasingAudio, NormalAudio;
+
+
+        private Transform BackgroundMusic;
+
         public void Start()
         {
             MealRight = null;
@@ -47,8 +52,10 @@ namespace Assets.Scripts
                 alertChef += AlertChef;
             }
 
-            RightSpawnPoint = gameObject.transform.Find("RightFoodSpawnPoint");
-            LeftSpawnPoint = gameObject.transform.Find("LeftFoodSpawnPoint");
+            //RightSpawnPoint = gameObject.transform.Find("RightFoodSpawnPoint");
+            //LeftSpawnPoint = gameObject.transform.Find("LeftFoodSpawnPoint");
+
+            BackgroundMusic = GameObject.FindGameObjectWithTag("BackgroundMusic").transform;
         }
 
         private void Awake()
@@ -64,12 +71,29 @@ namespace Assets.Scripts
         public void Update()
         {
             DoMealGenerationThings();
+
+            if (!chef.GetComponent<ChefController>().ShouldChase)
+            {
+                var audio = BackgroundMusic.GetComponent<AudioSource>();
+                if (audio.clip == ChasingAudio)
+                {
+                    audio.clip = NormalAudio;
+                    audio.Play();
+                }
+            }
         }
 
         private void AlertChef()
         {
             chef.GetComponent<ChefController>().ShouldChase = true;
             chef.GetComponent<ChefController>().Target = target;
+
+            var audio = BackgroundMusic.GetComponent<AudioSource>();
+            if (audio.clip == NormalAudio)
+            {
+                audio.clip = ChasingAudio;
+                audio.Play();
+            }
         }
 
         public void DoMealGenerationThings()

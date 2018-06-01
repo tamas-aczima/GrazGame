@@ -122,6 +122,8 @@ public class PlayerController : NetworkBehaviour
         Ray ray = new Ray(cam.transform.position, cam.transform.forward);
         RaycastHit hit;
 
+        Debug.DrawRay(ray.origin, ray.direction);
+
         var layerMask = LayerMask.GetMask("Meal");
 
         if (Physics.Raycast(ray, out hit, 1f, layerMask))
